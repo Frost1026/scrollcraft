@@ -4,8 +4,7 @@
   "description": "A discord game I've been wanting to make for some time already",
   "main": "bot.js",
   "scripts": {
-    "lint": "eslint src",
-    "build": "node ./src/bot.js"
+    "lint": "eslint src"
   },
   "repository": {
     "type": "git",
