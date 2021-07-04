@@ -4,7 +4,7 @@
   "description": "A discord game I've been wanting to make for some time already",
   "main": "bot.js",
   "scripts": {
-    "test": "echo \\\"Error: no test specified\\\" && exit 1"
+    "lint": "eslint src"
   },
   "repository": {
     "type": "git",
@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Jaston1026/scrollcraft#readme",
   "dependencies": {
+    "console-stamp": "^3.0.2",
     "discord.js": "^12.5.3",
     "express": "^4.17.1"
   },

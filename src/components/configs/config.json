@@ -1,0 +1,12 @@
+{
+    "table": [{
+        "PREFIX": "!sc ",
+        "BOT_TOKEN": "ODYwNzY1NjE4NDk2MzQwMDIw.YOAAcw.9iEI3WZFqmYCIfUI1ke-EwLnpzw",
+        "MAINTENANCE_MODE": [
+            false
+        ],
+        "WHITELIST": [
+            "Frost1026"
+        ]
+    }]
+}
