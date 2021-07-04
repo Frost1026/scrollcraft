@@ -107,4 +107,4 @@ dist
 components/configs/*.json
 
 #DS_Store file
-**/DS_Store
+**/.DS_Store
