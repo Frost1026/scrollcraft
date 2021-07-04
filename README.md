@@ -1,10 +1,10 @@
-# Fake-Rhythm
+# ScrollCrafter
 
-This is a discord bot that uses Node.js and hosted on Replit
+This is a discord game bot 
 
 ## Code Folder Structure
 
-The [`commands folder`](https://github.com/Jaston1026/Fake-Rhythm/tree/Development/commands) is where all commands should be stored in a Javascript file.
+The [`commands folder`](https://github.com/Jaston1026/scrollcrafter/tree/main/commands) is where all commands should be stored in a Javascript file.
 
 ---
 
