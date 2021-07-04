@@ -76,8 +76,9 @@ app.get('/', (req, res) => res.send("I'm not dead! :D"))
 app.listen(port, () => console.log(`listening at http://localhost:${port}`))
 
 //Discord Bot Portion
-const config_file = "./components/configs/config.json"
-const launchOptions_file = "./components/configs/launch_options.json"
+const components_folder = "./src/components"
+const config_file = "./src/components/configs/config.json"
+const launchOptions_file = "./src/components/configs/launch_options.json"
 
 const discord = require("discord.js")
 const fs = require("fs")
@@ -90,7 +91,7 @@ const client = new discord.Client()
 const prefix = config.table[0].PREFIX
 const commands = new Map()
 
-const jsFiles = fs.readdirSync('./components').filter(file => file.endsWith('.js'))
+const jsFiles = fs.readdirSync(components_folder).filter(file => file.endsWith('.js'))
 
 jsFiles.forEach(commandFile => {
 	const command = require(`./components/${commandFile}`)

@@ -1,6 +1,6 @@
 const fs = require("fs")
 const discord = require("discord.js")
-const option_file = "./components/configs/launch_options.json"
+const option_file = "./src/components/configs/launch_options.json"
 
 const template = {
 	table: []
