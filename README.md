@@ -1,10 +1,10 @@
 # ScrollCrafter
 
-This is a discord game bot 
+This is a discord game bot with a rpg spellcrafting theme that is hosted on heroku
 
 ## Code Folder Structure
 
-The [`commands folder`](https://github.com/Jaston1026/scrollcrafter/tree/main/commands) is where all commands should be stored in a Javascript file.
+The [`commands folder`](https://github.com/Jaston1026/scrollcraft/tree/main/commands) is where all commands should be stored in a Javascript file.
 
 ---
 
