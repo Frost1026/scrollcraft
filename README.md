@@ -1,4 +1,4 @@
-# ScrollCrafter
+# ScrollCraft
 
 This is a discord game bot with a rpg spellcrafting theme that is hosted on heroku
 
