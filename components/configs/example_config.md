@@ -1,10 +1,10 @@
 # Config setup
 
-## File creation requirement
+## File creation for `configs` folder
 You just have to follow these steps, the rest will be handled programmatically:
 
 1. Create your wanted file that ends with `.json`
-2. Make sure your filename and path matches the one declared in said program
+2. Make sure your `filename and path` matches the one declared the program that intends to use said file
 3. Make sure the program have a function and variables that look like this: 
     ``` js 
     //Template for empty json file
@@ -35,4 +35,4 @@ You just have to follow these steps, the rest will be handled programmatically:
         Object.freeze(obj)
     }
     ```
-4. The rest will be handled programmatically
+4. File creation for a single `.json` file complete; Repeat `Steps: 1 - 2` to create more `.json` files for the same program
