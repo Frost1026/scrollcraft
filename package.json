@@ -4,7 +4,7 @@
   "description": "A discord game I've been wanting to make for some time already",
   "main": "bot.js",
   "scripts": {
-    "test": "echo \\\"Error: no test specified\\\" && exit 1"
+    "lint": "eslint src"
   },
   "repository": {
     "type": "git",
