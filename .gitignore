@@ -104,4 +104,7 @@ dist
 .tern-port
 
 #configs for bot components
-components/configs/**
+components/configs/*.json
+
+#DS_Store file
+**/DS_Store
