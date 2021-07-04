@@ -1,0 +1,26 @@
+{
+  "name": "scrollcraft",
+  "version": "1.0.0",
+  "description": "A discord game I've been wanting to make for some time already",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \\\"Error: no test specified\\\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jaston1026/scrollcraft.git"
+  },
+  "author": "FrostedPoenix a.k.a Jaston1026",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jaston1026/scrollcraft/issues"
+  },
+  "homepage": "https://github.com/Jaston1026/scrollcraft#readme",
+  "dependencies": {
+    "discord.js": "^12.5.3",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.30.0"
+  }
+}
