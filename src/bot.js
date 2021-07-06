@@ -1,6 +1,11 @@
 //Set default timezone for node process
 process.env.TZ = 'Asia/Kuala_Lumpur'
 
+//since replit have to log timecodes, this code lets all console.log to have one (time used from timezone set above)
+require('console-stamp')(console, { 
+	format: ':date(yyyy/mm/dd HH:MM:ss.l)',
+})
+
 // JSON buffers and template
 const template = {
 	table: []
@@ -30,6 +35,7 @@ const refreshJSONBuffer = (filepath, obj) => {
 	Object.freeze(obj)
 }
 
+//function for letting bot into maintenance(whitelists user only)
 const maintenance = (message, args) => {
 	switch(args) {
 		case "on":
@@ -63,34 +69,38 @@ const maintenance = (message, args) => {
 }
 //end of predefining functions
 
-//Web Portion
+//Web Portion(for uptime robot to keep repl running)
 const express = require('express')
-require('console-stamp')(console, { 
-	format: ':date(yyyy/mm/dd HH:MM:ss.l)',
-})
 const app = express()
 const port = 3000
 
 app.get('/', (req, res) => res.send("I'm not dead! :D"))
 
 app.listen(port, () => console.log(`listening at http://localhost:${port}`))
+//end of web portion
 
-//Discord Bot Portion
+
+//Discord Bot Portion---------------------------------------------
+
+//bot initial variables declaration
 const components_folder = "./src/components"
 const config_file = "./src/components/configs/config.json"
 const launchOptions_file = "./src/components/configs/launch_options.json"
 
 const discord = require("discord.js")
+const mongoose = require("mongoose")
 const fs = require("fs")
 
+const client = new discord.Client()
+
+//parse json file content from configs into javascript objects
 refreshJSONBuffer(config_file, config)
 refreshJSONBuffer(launchOptions_file, launchOptions)
-
-const client = new discord.Client()
 
 const prefix = config.table[0].PREFIX
 const commands = new Map()
 
+//get command files from components folder and parsing to a map
 const jsFiles = fs.readdirSync(components_folder).filter(file => file.endsWith('.js'))
 
 jsFiles.forEach(commandFile => {
@@ -100,9 +110,18 @@ jsFiles.forEach(commandFile => {
 	}
 })
 
+//Verify database connection
+mongoose.connect(config.table[0].MONGODB_URI, {
+	useNewUrlParser: true,
+	useUnifiedTopology: true
+}) .then(() => {
+	console.log("Database Connected")
+})
+
+//bot initial running code similar to setup
 client.once('ready', () => {
 	console.log('Ready!')
-console.log(`Logged in as ${client.user.tag}`)
+	console.log(`Logged in as ${client.user.tag}`)
 
 	client.user.setActivity(`for ${prefix}`, {type: "WATCHING"})
 
@@ -122,16 +141,20 @@ console.log(`Logged in as ${client.user.tag}`)
 	}
 });
 
+//command handling section
 client.on("message", async message => {
-try{
-	if(!message.content.startsWith(prefix)) return
+	try{
+		if(!message.content.startsWith(prefix)) return
 
-	const preSlicedCommand = message.content.slice(prefix.length)
-	const args = preSlicedCommand.split(" ")
-	const command = args.shift().toLowerCase()
+		//seperating prefix, command and arguments
+		const preSlicedCommand = message.content.slice(prefix.length)
+		const args = preSlicedCommand.split(" ")
+		const command = args.shift().toLowerCase()
 
+		//logging command ran to user who initiated the command
 		console.log(`${message.author.username} wants to run the ${command} command with arguments of ${args}`)
 
+		//code to determine should command be run
 		if(command === "maintenance") {
 			if(config.table[0].WHITELIST.includes(message.author.username)) {
 				maintenance(message, args[0])
@@ -155,9 +178,10 @@ try{
 				}
 			}
 		}
-} catch(err) {
-	console.log(err)
-}  
+	} catch(err) {
+		console.log(err)
+	}  
 });
 	
+//discord bot log in
 client.login(config.table[0].BOT_TOKEN);
