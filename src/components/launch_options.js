@@ -31,8 +31,7 @@ module.exports = {
 	desc: "",
 	func: async (message, args, client, commands, config) => {
 		refreshJSONBuffer(option_file)
-		console.log(config.table[0].WHITELIST.indexOf(message.author.username))
-		if(config.table[0].WHITELIST.indexOf(message.author.username)) {
+		if(config.table[0].WHITELIST.includes(message.author.username)) {
 			switch(args[0]) {
 				case "set":
 					let proceed
@@ -346,8 +345,7 @@ module.exports = {
 			const adminOnly = new discord.MessageEmbed()
 				.setAuthor(message.author.tag, message.author.displayAvatarURL({ format: "png", dynamic: true }))
 				.setTitle("Admin only command")
-				.setDescription(`If you are a bot admin but can't use the command, 
-								please contact bot owner for assitance`)
+				.setDescription(`If you are a bot admin but can't use the command, please contact bot owner for assitance`)
 				.setColor('#ff0000')
 				.setTimestamp()
 
