@@ -28,4 +28,4 @@ schemas.forEach((value, index) => {
 	}
 })
 
-module.exports = models
+module.exports = Object.fromEntries(models)
