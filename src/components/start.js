@@ -5,9 +5,12 @@ const model = require("./models/model.js")
 module.exports = {
 	key: "start",
 	func: async (message, args, client, commands) => {
-		// if(model.profile.find({uid: `acc${message.author.id}`}).exec() === null) {
-		// 	message.channel.send(`No profile found for ${message.author.id}`)
-		// }
-		console.log(await model.profile.find({uid: `acc${message.author.id}`}).exec())
+		model.profile.find({uid: `acc${message.author.id}`}, (err, docs) => {
+			if(err == mull) {
+				message.channel.send("No profile found")
+			} else {
+				message.channel.send("Found profile")
+			}
+		})
 	}
 }
