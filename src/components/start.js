@@ -6,7 +6,7 @@ module.exports = {
 	key: "start",
 	func: async (message, args, client, commands) => {
 		model.profile.find({uid: `acc${message.author.id}`}, (err, docs) => {
-			if(err == mull) {
+			if(err == null) {
 				message.channel.send("No profile found")
 			} else {
 				message.channel.send("Found profile")
