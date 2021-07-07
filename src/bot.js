@@ -136,7 +136,7 @@ client.once('ready', () => {
 			message["channel"] = client.channels.cache.get(id)
 			message["createdTimestamp"] = Date.now()
 
-			commands.get(command)(message, args, client, commands)
+			commands.get(command)(message, args, client, commands, config)
 		}) 	
 	}
 });
@@ -168,10 +168,10 @@ client.on("message", async message => {
 				return
 			} else {
 				if(!config.table[0].MAINTENANCE_MODE[0]) {
-					commands.get(command)(message, args, client, commands)
+					commands.get(command)(message, args, client, commands, config)
 				} else {
 					if(config.table[0].WHITELIST.includes(message.author.username)) {
-						commands.get(command)(message, args, client, commands)
+						commands.get(command)(message, args, client, commands. config)
 					} else {
 						message.channel.send(`${message.author} I am **under maintenance** only bot admins can use commands`)
 					}
