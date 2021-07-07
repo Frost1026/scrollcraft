@@ -7,9 +7,11 @@ module.exports = {
 	func: async (message, args, client, commands) => {
 		model.profile.find({uid: `acc${message.author.id}`}, (err, docs) => {
 			if(err == null) {
-				message.channel.send("No profile found")
+				message.channel.send(`**Creating profile for ${message.author}**`)
+				
+				
 			} else {
-				message.channel.send("Found profile")
+				message.channel.send(`**${message.author} already have a profile created**`)
 			}
 		})
 	}
