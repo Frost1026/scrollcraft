@@ -1,0 +1,15 @@
+{
+	"table": [
+		{
+			"PREFIX": "!sc ",
+			"BOT_TOKEN": "ODYwNzY1NjE4NDk2MzQwMDIw.YOAAcw.T7T5FM2kMHiLpuoTTGY1-aBK3Y8",
+			"MONGODB_URI": "mongodb+srv://FrostedPhoenix:J@sonChang1026Mongo@scrollcraft1.4mqmb.mongodb.net/scrollcraft?retryWrites=true&w=majority",
+			"MAINTENANCE_MODE": [
+				false
+			],
+			"WHITELIST": [
+				"Frost1026"
+			]
+		}
+	]
+}
