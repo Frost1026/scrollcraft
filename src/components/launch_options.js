@@ -31,6 +31,7 @@ module.exports = {
 	desc: "",
 	func: async (message, args, client, commands, config) => {
 		refreshJSONBuffer(option_file)
+		console.log(config.table[0].WHITELIST.indexOf(message.author.username))
 		if(config.table[0].WHITELIST.indexOf(message.author.username)) {
 			switch(args[0]) {
 				case "set":
@@ -349,6 +350,8 @@ module.exports = {
 								please contact bot owner for assitance`)
 				.setColor('#ff0000')
 				.setTimestamp()
+
+			message.channel.send(adminOnly)
 		}
 	}
 }
