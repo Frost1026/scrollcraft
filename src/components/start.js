@@ -5,8 +5,6 @@ const model = require("./models/model.js")
 module.exports = {
 	key: "start",
 	func: async (message, args, client, commands) => {
-		if(message.author.id) {
-			
-		}
+		console.log(mongoose.get(profilemodels))
 	}
 }
