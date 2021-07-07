@@ -8,6 +8,6 @@ module.exports = {
 		// if(model.profile.find({uid: `acc${message.author.id}`}).exec() === null) {
 		// 	message.channel.send(`No profile found for ${message.author.id}`)
 		// }
-		console.log(model.profile.find({uid: `acc${message.author.id}`}).exec())
+		console.log(await model.profile.find({uid: `acc${message.author.id}`}).exec())
 	}
 }

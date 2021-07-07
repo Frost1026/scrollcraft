@@ -5,7 +5,7 @@ const schemas = [
 	{
 		id: "profile",
 		schema: new mongoose.Schema({
-			userID: {type: String, required: true},
+			uid: {type: String, required: true},
 			stats: new mongoose.Schema({
 				strength: {type: Number, default: 0},
 				defence: {type: Number, default: 0},
