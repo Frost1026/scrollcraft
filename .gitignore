@@ -104,7 +104,7 @@ dist
 .tern-port
 
 #configs for bot components don't uncomment until dev branch is ready
-# src/components/configs/*.json
+src/components/configs/*.json
 
 #DS_Store file
 **/.DS_Store
