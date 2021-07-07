@@ -5,6 +5,6 @@ const model = require("./models/model.js")
 module.exports = {
 	key: "start",
 	func: async (message, args, client, commands) => {
-		console.log(mongoose.find({"profilemodels"}))
+		console.log(mongoose.find({}))
 	}
 }
