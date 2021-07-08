@@ -23,7 +23,6 @@ module.exports = {
         const payloadBuffer = []
 
         const generateEmbed = (page) => {
-            console.log(payloadBuffer)
             const payloadEmbed = new discord.MessageEmbed()
 
             pages = payloadBuffer.length
@@ -45,7 +44,8 @@ module.exports = {
             return value
         })
 
-        for(const [index, value] of payload.entries()) {
+        payload.forEach((value, index) => {
+            console.log(payload.slice(initialIndex, index))
             index += 1
             if((index % pageLimit) === 0) {
                 payloadBuffer.push(payload.slice(initialIndex, index))
@@ -53,7 +53,7 @@ module.exports = {
             } else if(index === payload.length) {
                 payloadBuffer.push(payload.slice(initialIndex, index))
             }
-        }
+        })
 
         message.channel.send(generateEmbed(1)).then((list) => {
             let currentPage = 1
