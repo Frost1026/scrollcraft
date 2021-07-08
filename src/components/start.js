@@ -4,6 +4,7 @@ const model = require("./models/model.js")
 
 module.exports = {
 	key: "start",
+	desc: "Creates player profile for the game",
 	func: async (message, args, client, commands) => {
 		model.profile.find({uid: `acc${message.author.id}`}, (err, docs) => {
 			if(err == null) {

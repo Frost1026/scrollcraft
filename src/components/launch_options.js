@@ -28,7 +28,7 @@ const refreshJSONBuffer = (filepath) => {
 
 module.exports = {
 	key: "launchoption",
-	desc: "",
+	desc: "Runs set commands on bot startup 🛠",
 	func: async (message, args, client, commands, config) => {
 		refreshJSONBuffer(option_file)
 		if(config.table[0].WHITELIST.includes(message.author.username)) {
@@ -107,7 +107,7 @@ module.exports = {
 							return value[0].join(" ")
 						})
 
-						for(var [index, value] of payload.entries()) {
+						for(const [index, value] of payload.entries()) {
 							index += 1
 							if((index % pageLimit) === 0) {
 								payloadBuffer.push(payload.slice(initialIndex, index))
@@ -345,7 +345,7 @@ module.exports = {
 			const adminOnly = new discord.MessageEmbed()
 				.setAuthor(message.author.tag, message.author.displayAvatarURL({ format: "png", dynamic: true }))
 				.setTitle("Admin only command")
-				.setDescription(`If you are a bot admin but can't use the command, please contact bot owner for assitance`)
+				.setDescription(`If you are a bot admin but can't use the command, please contact bot owner for assistance`)
 				.setColor('#ff0000')
 				.setTimestamp()
 
