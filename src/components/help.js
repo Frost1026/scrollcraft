@@ -15,6 +15,8 @@ module.exports = {
 
         const jsFiles = fs.readdirSync(".").filter(file => file.endsWith('.js'))
 
+        console.log(jsFiles)
+
         jsFiles.forEach(commandFile => {
             const command = require(`./${commandFile}`)
             if(command.key && command.desc) {
