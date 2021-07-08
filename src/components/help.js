@@ -22,8 +22,6 @@ module.exports = {
             }
         })
 
-        console.log(commandDesc)
-
         const generateEmbed = (page) => {
             const payloadEmbed = new discord.MessageEmbed()
 
@@ -47,7 +45,6 @@ module.exports = {
         })
 
         payload.forEach((value, index) => {
-            console.log(payload.slice(initialIndex, index))
             index += 1
             if((index % pageLimit) === 0) {
                 payloadBuffer.push(payload.slice(initialIndex, index))
