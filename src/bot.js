@@ -116,6 +116,7 @@ mongoose.connect(config.table[0].MONGODB_URI, {
 	useUnifiedTopology: true
 }) .then(() => {
 	console.log("Database Connected")
+	client.channel.cache.get("861187530338336788").send("Bot Restarted")
 })
 
 //bot initial running code similar to setup
