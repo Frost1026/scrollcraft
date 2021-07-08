@@ -6,6 +6,13 @@ const commandDesc = {}
 module.exports = {
     key: "help",
 	func: async (message, args, client, commands) => {
+        let payload
+        let pages	
+        let initialIndex = 0
+    
+        const pageLimit = 6
+        const payloadBuffer = []
+
         const jsFiles = fs.readdirSync(".").filter(file => file.endsWith('.js'))
 
         jsFiles.forEach(commandFile => {
@@ -15,12 +22,7 @@ module.exports = {
             }
         })
 
-        let payload
-        let pages	
-        let initialIndex = 0
-    
-        const pageLimit = 6
-        const payloadBuffer = []
+        console.log(commandDesc)
 
         const generateEmbed = (page) => {
             const payloadEmbed = new discord.MessageEmbed()
