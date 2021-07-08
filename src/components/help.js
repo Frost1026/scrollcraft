@@ -13,9 +13,7 @@ module.exports = {
         const pageLimit = 6
         const payloadBuffer = []
 
-        const jsFiles = fs.readdirSync(".").filter(file => file.endsWith('.js'))
-
-        console.log(process.cwd())
+        const jsFiles = fs.readdirSync("./components").filter(file => file.endsWith('.js'))
 
         jsFiles.forEach(commandFile => {
             const command = require(`./${commandFile}`)
