@@ -13,7 +13,7 @@ module.exports = {
         const pageLimit = 6
         const payloadBuffer = []
 
-        const jsFiles = fs.readdirSync("/home/scrollcraft/src/components").filter(file => file.endsWith('.js'))
+        const jsFiles = fs.readdirSync("./src/components").filter(file => file.endsWith('.js'))
 
         jsFiles.forEach(commandFile => {
             const command = require(`./${commandFile}`)
@@ -35,7 +35,7 @@ module.exports = {
 
             payloadEmbed
                 .setAuthor(message.author.tag, message.author.displayAvatarURL({ format: "png", dynamic: true }))
-                .setTitle("Help Section")
+                .setTitle("Welcome to the Help Desk")
                 .setColor("#0074FF")
                 .setFooter(`Page ${page} of ${pages}`)
 
