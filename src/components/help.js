@@ -23,6 +23,7 @@ module.exports = {
         const payloadBuffer = []
 
         const generateEmbed = (page) => {
+            console.log(payloadBuffer)
             const payloadEmbed = new discord.MessageEmbed()
 
             pages = payloadBuffer.length
