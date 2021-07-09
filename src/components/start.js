@@ -87,6 +87,7 @@ module.exports = {
 					collector.on("collect", (reaction) => {
 						list.reactions.removeAll().then(async() => {
 							if(reaction.emoji.name === '✅') {
+								console.log("test")
 								proceed = true
 								list.reactions.removeAll().then(async() => {
 									list.delete()
