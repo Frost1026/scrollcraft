@@ -1,4 +1,5 @@
 const discord = require("discord.js")
+const fs = require("fs")
 const mongoose = require("mongoose")
 const model = require("./models/model.js")
 
