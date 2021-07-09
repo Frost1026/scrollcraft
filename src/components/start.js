@@ -5,9 +5,7 @@ const model = require("./models/model.js")
 
 const classes_file = "./src/components/assets/classes.json"
 
-const template = {
-	table: []
-}
+const template = {}
 
 var classes = {}
 
@@ -108,8 +106,6 @@ module.exports = {
 										payloadBuffer.push(payload.slice(initialIndex, index))
 									}
 								})
-
-								console.log(payloadBuffer)
 						
 								message.channel.send(generateEmbed(1)).then((list) => {
 									let currentPage = 1
