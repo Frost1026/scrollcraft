@@ -73,7 +73,7 @@ module.exports = {
 					.setFooter("Everyone only have one choice at character creation, choose wisely")
 					.setTimestamp()
 
-				message.author.send(readFirstEmbed).then((list) => {
+				message.channel.send(readFirstEmbed).then((list) => {
 					list.react("✅").then(list.react("❌"))
 			
 					const filter = (reaction, user) => {
@@ -100,7 +100,7 @@ module.exports = {
 					})
 
 					collector.on("end", collected => {
-						message.author.send("Exited Character Creation")
+						message.channel.send("Exited Character Creation")
 						list.reactions.removeAll().then(async() => {
 							list.delete()
 						})
@@ -122,7 +122,7 @@ module.exports = {
 						}
 					})
 			
-					message.channel.author(generateEmbed(1)).then((list) => {
+					message.channel.send(generateEmbed(1)).then((list) => {
 						let currentPage = 1
 			
 						if(pages > 1) {
@@ -157,7 +157,7 @@ module.exports = {
 							})
 			
 							collector.on("end", collected => {
-								message.author.send("No Class Selected")
+								message.channel.send("No Class Selected")
 								list.reactions.removeAll().then(async() => {
 									list.delete()
 								})
