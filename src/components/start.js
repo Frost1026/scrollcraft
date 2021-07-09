@@ -36,6 +36,8 @@ module.exports = {
 	func: async (message, args, client, commands) => {
 		model.profile.find({uid: `acc-${message.author.id}`}, (err, docs) => {
 			if(err == null) {
+				refreshJSONBuffer(classes_file, classes)
+
 				let proceed = false
 				let payload
 				let pages	
