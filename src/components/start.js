@@ -155,6 +155,13 @@ module.exports = {
 									list.delete()
 								})
 							}
+
+							collector.on("end", collected => {
+								message.channel.send("Didn't Enter Character Creation")
+								list.reactions.removeAll().then(async() => {
+									list.delete()
+								})
+							})
 						})
 					})
 				})
