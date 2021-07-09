@@ -92,6 +92,7 @@ module.exports = {
 									list.delete()
 								})
 							} else if(reaction.emoji.name === '❌') {
+								message.channel.send("Exited Character Creation")
 								list.reactions.removeAll().then(async() => {
 									list.delete()
 								})
@@ -99,12 +100,12 @@ module.exports = {
 						})
 					})
 
-					collector.on("end", collected => {
-						message.channel.send("Exited Character Creation")
-						list.reactions.removeAll().then(async() => {
-							list.delete()
-						})
-					})
+					// collector.on("end", collected => {
+					// 	message.channel.send("Exited Character Creation")
+					// 	list.reactions.removeAll().then(async() => {
+					// 		list.delete()
+					// 	})
+					// })
 				})
 		
 				if(proceed) {
