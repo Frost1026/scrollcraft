@@ -10,7 +10,7 @@ module.exports = {
         let pages	
         let initialIndex = 0
     
-        const pageLimit = 6
+        const pageLimit = 2
         const payloadBuffer = []
 
         const jsFiles = fs.readdirSync("./src/components").filter(file => file.endsWith('.js'))

@@ -12,6 +12,7 @@ module.exports = {
 			if(err == null) {
 				startingOutEmbed
 					.setAuthor(message.author.tag, message.author.displayAvatarURL({ format: "png", dynamic: true }))
+					.setColor("#0074FF")
 					.setTitle("Character Creation")
 					.setDescription("Everyone only have a chance at character creation, so choose your options wisely.")
 					.addField("React on the arrows to scroll through available classes")
