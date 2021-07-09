@@ -107,6 +107,8 @@ module.exports = {
 					// 	})
 					// })
 				})
+
+				console.log(proceed)
 		
 				if(proceed) {
 					payload = Object.entries(classes).map(value => {
