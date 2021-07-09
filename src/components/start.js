@@ -14,6 +14,8 @@ module.exports = {
 				.setAuthor(message.author.tag, message.author.displayAvatarURL({ format: "png", dynamic: true }))
 				.setTitle("Character Creation")
 				.setDescription("Everyone only have a chance at character creation, so choose your options wisely.")
+				.addField("React on the arrows to scroll through available classes")
+				.setFooter("Classes will only determine your initial stats and initial ability to master which weapon.")
 				.setTimestamp()
 			} else {
 				message.channel.send(`**${message.author} already have a profile on the database**`)

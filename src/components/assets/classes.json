@@ -1,7 +1,28 @@
 {
     "Warlock": {
         "icon": "🪄",
-        "description": "A magic staff user, great intelligence but weak at defending himself, some said he is destined to uncover the secrets of Albion",
+        "desc": "Borned of great intelligence, they use staffs able to imbeud with powers, although powerful an extreme lack of defense is not to be overlooked. Their source of knowledge over the mystic arts comes from the scrolls",
+        "stats": {
+            
+        }
+    },
+    "Knight": {
+        "icon": "⚔️",
+        "desc": "Tasked with a holy job to protect the realm of Cloudia, the knight specialises in either 2-handed or 1-handed sword combat. Knights often will dive head first into battle, they quickly gained the skills to draw enemies from allies, with this and thier great defense a knight can also be a great tank.",
+        "stats": {
+
+        }
+    },
+    "Hunter": {
+        "icon": "🏹",
+        "desc": "Borned with great dexterity, hunters uses their sharp instincts and hands to master the bow, their eagle like vision enables them to spot enemies miles away. Their trustworthy winged companion may also help them to scout out an area. Since they hunt for a living, stealth is also a key part of being a hunter.",
+        "stats": {
+
+        }
+    },
+    "Shaman": {
+        "icon": "🗿",
+        "desc": "Although similar to a warlock, shamans draw their godly powers from totems that they can summon temporarily at will. To make up for the lack of defense & health, summoned totems will give off a regeneration effect or maybe some other buffs?",
         "stats": {
             
         }
