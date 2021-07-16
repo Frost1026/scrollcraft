@@ -100,6 +100,7 @@ module.exports = {
 					}
 
 					list.awaitReactions(confirmationFilter, {time: 30000, errors: ['time']}).then(collected => {
+						console.log(collected)
 						if(collected.emoji.name === '✅') {
 							list.edit(generateEmbed(1)).then(() => {
 								const collector = list.createReactionCollector(selectionFilter, {
