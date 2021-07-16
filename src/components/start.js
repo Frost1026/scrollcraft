@@ -44,6 +44,7 @@ module.exports = {
 			
 				const pageLimit = 1
 				const payloadBuffer = []
+				const reactions = ['✅', '❌', '⬅️', '➡️']
 
 				const readFirstEmbed = new discord.MessageEmbed()
 
@@ -91,22 +92,16 @@ module.exports = {
 				message.channel.send(readFirstEmbed).then((list) => {
 					list.react("✅").then(list.react("❌"))
 			
-					const confirmationFilter = (reaction, user) => {
-						return ['✅', '❌'].includes(reaction.emoji.name) && user.id === message.author.id
+					const filter = (reaction, user) => {
+						return reactions.includes(reaction.emoji.name) && user.id === message.author.id
 					}
 
-					const selectionFilter = (reaction, user) => {
-						return ['⬅️', '➡️'].includes(reaction.emoji.name) && user.id === message.author.id
-					}
+					list.awaitReactions(filter, {max: 1, time: 150000, errors: ['time']}).then((collected) => {
+						const reaction = collected.first()
 
-					list.awaitReactions(confirmationFilter, {max: 1, time: 30000, errors: ['time']}).then((collected) => {
-						if(collected.first().emoji.name === '✅') {
+						if(reaction.emoji.name === '✅') {
 							list.edit(generateEmbed(1)).then(() => {
 								list.reactions.removeAll()
-							})
-
-							const collector = list.createReactionCollector(selectionFilter, {
-								time: 60000
 							})
 							
 							let currentPage = 1
@@ -114,7 +109,7 @@ module.exports = {
 							if(pages > 1) {
 								list.react("➡️")
 				
-								collector.on("collect", (reaction) => {
+								if(collected) {
 									list.reactions.removeAll().then(async() => {
 										if(reaction.emoji.name === '➡️') {
 											currentPage += 1
@@ -132,16 +127,9 @@ module.exports = {
 											await list.react('➡️')
 										}
 									})
-								})
-				
-								collector.on("end", collected => {
-									message.channel.send("**No Class Selected**")
-									list.reactions.removeAll().then(async() => {
-										list.delete()
-									})
-								})
+								}
 							}
-						} else if(collected.first().emoji.name === '❌') {
+						} else if(reaction.emoji.name === '❌') {
 							message.channel.send("Exited Character Creation")
 							list.reactions.removeAll().then(() => {
 								list.delete()
