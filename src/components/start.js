@@ -101,7 +101,7 @@ module.exports = {
 						})
 		
 						collector.on("collect", (reaction) => {
-							list.reactions.removeAll().then(() => {
+							list.reactions.removeAll().then(async() => {
 								if(reaction.emoji.name === '➡️') {
 									currentPage += 1
 								} else if(reaction.emoji.name === '⬅️') {
