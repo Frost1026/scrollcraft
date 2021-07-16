@@ -69,7 +69,7 @@ module.exports = {
 				}
 
 				const createCharacter = (selectedClass) => {
-					console.log(payloadBuffer[selectedClass])
+					console.log(payload)
 				}
 
 
@@ -111,7 +111,8 @@ module.exports = {
 								} else if(reaction.emoji.name === '⬅️') {
 									currentPage -= 1
 								} else if(reaction.emoji.name === '✅') {
-									createCharacter(currentPage)
+									//currentPage - 1 because it is one higher of the current array element index
+									createCharacter(currentPage - 1)
 								} else if(reaction.emoji.name === '❌') {
 
 								}
