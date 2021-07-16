@@ -5,23 +5,9 @@ const model = require("./models/model.js")
 
 const classes_file = "./src/components/assets/classes.json"
 
-let proceed = false
-let payload
-let pages 
-let initialIndex = 0
-
-const pageLimit = 1
-const payloadBuffer = []
-const reactions = ['✅', '⬅️', '➡️']
-
-const readFirstEmbed = new discord.MessageEmbed()
-
-// Variables used for json buffer function
 const template = {}
 
 var classes = {}
-
-
 
 // Functions to get declared, write here
 const refreshJSONBuffer = (filepath, obj) => {
@@ -43,25 +29,6 @@ const refreshJSONBuffer = (filepath, obj) => {
 	Object.freeze(obj)
 }
 
-const generateEmbed = (page) => {
-	const payloadEmbed = new discord.MessageEmbed()
-
-	pages = payloadBuffer.length
-
-	payloadBuffer[page - 1].forEach((value, index) => {
-		payloadEmbed.addField(`${value[0]} ${value[1].icon}` , value[1].desc)
-	})
-
-	payloadEmbed
-		.setAuthor(message.author.tag, message.author.displayAvatarURL({ format: "png", dynamic: true }))
-		.setTitle("Character Creation")
-		.setDescription("Classes only determine your starting weapon and stats.")
-		.setColor("#0074FF")
-		.setFooter(`Page ${page} of ${pages}`)
-
-	return payloadEmbed
-}
-
 module.exports = {
 	key: "start",
 	desc: "Creates player profile for the game",
@@ -69,6 +36,36 @@ module.exports = {
 		model.profile.find({uid: `acc-${message.author.id}`}, (err, docs) => {
 			if(err == null) {
 				refreshJSONBuffer(classes_file, classes)
+
+				let proceed = false
+				let payload
+				let pages 
+				let initialIndex = 0
+			
+				const pageLimit = 1
+				const payloadBuffer = []
+				const reactions = ['✅', '⬅️', '➡️']
+
+				const readFirstEmbed = new discord.MessageEmbed()
+
+				const generateEmbed = (page) => {
+					const payloadEmbed = new discord.MessageEmbed()
+		
+					pages = payloadBuffer.length
+		
+					payloadBuffer[page - 1].forEach((value, index) => {
+						payloadEmbed.addField(`${value[0]} ${value[1].icon}` , value[1].desc)
+					})
+		
+					payloadEmbed
+						.setAuthor(message.author.tag, message.author.displayAvatarURL({ format: "png", dynamic: true }))
+						.setTitle("Character Creation")
+						.setDescription("Classes only determine your starting weapon and stats.")
+						.setColor("#0074FF")
+						.setFooter(`Page ${page} of ${pages}`)
+		
+					return payloadEmbed
+				}
 
 				payload = Object.entries(classes).map(value => {
 					return value
