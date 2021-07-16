@@ -60,7 +60,7 @@ module.exports = {
 					payloadEmbed
 						.setAuthor(message.author.tag, message.author.displayAvatarURL({ format: "png", dynamic: true }))
 						.setTitle("Character Creation")
-						.setDescription("Select a class(Your class only determines your starting weapon and stats.)")
+						.setDescription("Classes only determine your starting weapon and stats.")
 						.setColor("#0074FF")
 						.setFooter(`Page ${page} of ${pages}`)
 		
