@@ -98,14 +98,14 @@ module.exports = {
 					const selectionFilter = (reaction, user) => {
 						return ['⬅️', '➡️'].includes(reaction.emoji.name) && user.id === message.author.id
 					}
-	
-					const collector = list.createReactionCollector(selectionFilter, {
-						time: 60000
-					})
 
 					list.awaitReactions(confirmationFilter, {time: 30000, errors: ['time']}).then(collected => {
 						if(collected.emoji.name === '✅') {
-							message.channel.send(generateEmbed(1)).then((list) => {
+							list.edit(generateEmbed(1)).then(() => {
+								const collector = list.createReactionCollector(selectionFilter, {
+									time: 60000
+								})
+								
 								let currentPage = 1
 					
 								if(pages > 1) {
