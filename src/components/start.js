@@ -142,7 +142,7 @@ module.exports = {
 							// 		})
 							// 	}
 							// })
-						} else if(reaction.emoji.name === '❌') {
+						} else if(collected.first().emoji.name === '❌') {
 							message.channel.send("Exited Character Creation")
 							list.reactions.removeAll().then(() => {
 								list.delete()
