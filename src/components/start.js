@@ -44,10 +44,11 @@ module.exports = {
 			
 				const pageLimit = 1
 				const payloadBuffer = []
-				const reactions = ['✅', '⬅️', '➡️']
+				const reactions = ['✅', '❌', '⬅️', '➡️']
 
 				const readFirstEmbed = new discord.MessageEmbed()
 
+				//Function Declaration
 				const generateEmbed = (page) => {
 					const payloadEmbed = new discord.MessageEmbed()
 		
@@ -67,6 +68,12 @@ module.exports = {
 					return payloadEmbed
 				}
 
+				const createCharacter = (selectedClass) => {
+					console.log(payloadBuffer[selectedClass])
+				}
+
+
+				//Main Code Starts
 				payload = Object.entries(classes).map(value => {
 					return value
 				})
@@ -91,7 +98,7 @@ module.exports = {
 					})
 
 					let currentPage = 1
-	
+
 					if(pages > 1) {
 						list.react('➡️').then(() => {
 							list.react('✅')
@@ -104,7 +111,9 @@ module.exports = {
 								} else if(reaction.emoji.name === '⬅️') {
 									currentPage -= 1
 								} else if(reaction.emoji.name === '✅') {
-									createCharacter()
+									createCharacter(currentPage)
+								} else if(reaction.emoji.name === '❌') {
+
 								}
 		
 								list.edit(generateEmbed(currentPage))
