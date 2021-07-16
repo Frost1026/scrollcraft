@@ -102,43 +102,46 @@ module.exports = {
 					list.awaitReactions(confirmationFilter, {max: 1, time: 30000, errors: ['time']}).then((collected) => {
 						if(collected.emoji.name === '✅') {
 							list.edit(generateEmbed(1)).then(() => {
-								const collector = list.createReactionCollector(selectionFilter, {
-									time: 60000
-								})
-								
-								let currentPage = 1
-					
-								if(pages > 1) {
-									list.react("➡️")
-					
-									collector.on("collect", (reaction) => {
-										list.reactions.removeAll().then(async() => {
-											if(reaction.emoji.name === '➡️') {
-												currentPage += 1
-											} else if(reaction.emoji.name === '⬅️') {
-												currentPage -= 1
-											}
-					
-											list.edit(generateEmbed(currentPage))
-					
-											if(currentPage > 1) {
-												await list.react('⬅️')
-											}
-					
-											if(currentPage < pages) {
-												list.react('➡️')
-											}
-										})
-									})
-					
-									collector.on("end", collected => {
-										message.channel.send("**No Class Selected**")
-										list.reactions.removeAll().then(async() => {
-											list.delete()
-										})
-									})
-								}
+								console.log("test")
 							})
+							// message.channel.send(generateEmbed(1)).then((list_2) => {
+							// 	const collector = list_2.createReactionCollector(selectionFilter, {
+							// 		time: 60000
+							// 	})
+								
+							// 	let currentPage = 1
+					
+							// 	if(pages > 1) {
+							// 		list_2.react("➡️")
+					
+							// 		collector.on("collect", (reaction) => {
+							// 			list_2.reactions.removeAll().then(async() => {
+							// 				if(reaction.emoji.name === '➡️') {
+							// 					currentPage += 1
+							// 				} else if(reaction.emoji.name === '⬅️') {
+							// 					currentPage -= 1
+							// 				}
+					
+							// 				list_2.edit(generateEmbed(currentPage))
+					
+							// 				if(currentPage > 1) {
+							// 					await list_2.react('⬅️')
+							// 				}
+					
+							// 				if(currentPage < pages) {
+							// 					await list_2.react('➡️')
+							// 				}
+							// 			})
+							// 		})
+					
+							// 		collector.on("end", collected => {
+							// 			message.channel.send("**No Class Selected**")
+							// 			list_2.reactions.removeAll().then(async() => {
+							// 				list_2.delete()
+							// 			})
+							// 		})
+							// 	}
+							// })
 						} else if(reaction.emoji.name === '❌') {
 							message.channel.send("Exited Character Creation")
 							list.reactions.removeAll().then(() => {
