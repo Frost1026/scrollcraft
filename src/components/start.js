@@ -92,43 +92,15 @@ module.exports = {
 				message.channel.send(readFirstEmbed).then((list) => {
 					list.react("✅").then(list.react("❌"))
 			
-					const filter = (reaction, user) => {
-						return reactions.includes(reaction.emoji.name) && user.id === message.author.id
+					const confirmationFilter = (reaction, user) => {
+						return ['✅', '❌'].includes(reaction.emoji.name) && user.id === message.author.id
 					}
 
-					list.awaitReactions(filter, {max: 1, time: 150000, errors: ['time']}).then((collected) => {
+					list.awaitReactions(confirmationFilter, {max: 1, time: 150000, errors: ['time']}).then((collected) => {
 						const reaction = collected.first()
 
 						if(reaction.emoji.name === '✅') {
-							list.edit(generateEmbed(1)).then(() => {
-								list.reactions.removeAll()
-							})
-							
-							let currentPage = 1
-				
-							if(pages > 1) {
-								list.react("➡️")
-				
-								if(collected) {
-									list.reactions.removeAll().then(async() => {
-										if(reaction.emoji.name === '➡️') {
-											currentPage += 1
-										} else if(reaction.emoji.name === '⬅️') {
-											currentPage -= 1
-										}
-				
-										list.edit(generateEmbed(currentPage))
-				
-										if(currentPage > 1) {
-											await list.react('⬅️')
-										}
-				
-										if(currentPage < pages) {
-											await list.react('➡️')
-										}
-									})
-								}
-							}
+							return
 						} else if(reaction.emoji.name === '❌') {
 							message.channel.send("Exited Character Creation")
 							list.reactions.removeAll().then(() => {
@@ -142,6 +114,8 @@ module.exports = {
 							list.delete()
 						})
 					})
+
+					message.channel.send("send")
 				})
 			} else {
 				message.channel.send(`**${message.author} already have a profile on the database**`)
