@@ -103,44 +103,43 @@ module.exports = {
 					list.awaitReactions(filter, {max: 1, time: 150000, errors: ['time']}).then((collected) => {
 						const reaction = collected.first()
 
-						console.log(pages)
 						if(reaction.emoji.name === '✅') {
 							list.reactions.removeAll().then(() => {
 								list.edit(generateEmbed(1))
-							})
-							
-							let currentPage = 1
-				
-							if(pages > 1) {
-								list.react("➡️")
-				
-								collector.on("collect", (reaction) => {
-									list.reactions.removeAll().then(async() => {
-										if(reaction.emoji.name === '➡️') {
-											currentPage += 1
-										} else if(reaction.emoji.name === '⬅️') {
-											currentPage -= 1
-										}
-				
-										list.edit(generateEmbed(currentPage))
-				
-										if(currentPage > 1) {
-											await list.react('⬅️')
-										}
-				
-										if(currentPage < pages) {
-											list.react('➡️')
-										}
-									})
-								})
 
-								collector.on("end", collected => {
-									message.channel.send("**No Class Selected**")
-									list.reactions.removeAll().then(async() => {
-										list.delete()
+								let currentPage = 1
+				
+								if(pages > 1) {
+									list.react("➡️")
+					
+									collector.on("collect", (reaction) => {
+										list.reactions.removeAll().then(async() => {
+											if(reaction.emoji.name === '➡️') {
+												currentPage += 1
+											} else if(reaction.emoji.name === '⬅️') {
+												currentPage -= 1
+											}
+					
+											list.edit(generateEmbed(currentPage))
+					
+											if(currentPage > 1) {
+												await list.react('⬅️')
+											}
+					
+											if(currentPage < pages) {
+												list.react('➡️')
+											}
+										})
 									})
-								})
-							}
+	
+									collector.on("end", collected => {
+										message.channel.send("**No Class Selected**")
+										list.reactions.removeAll().then(async() => {
+											list.delete()
+										})
+									})
+								}
+							})
 						} else if(reaction.emoji.name === '❌') {
 							message.channel.send("Exited Character Creation")
 							list.reactions.removeAll().then(() => {
