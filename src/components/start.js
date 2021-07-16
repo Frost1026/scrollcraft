@@ -114,42 +114,47 @@ module.exports = {
 						}
 					}).catch(err => {
 						message.channel.send("**Timed Out**")
+						list.reactions.removeAll().then(() => {
+							list.delete()
+						})
 					})
 	
-					message.channel.send(generateEmbed(1)).then((list) => {
-						let currentPage = 1
-			
-						if(pages > 1) {
-							list.react("➡️")
-			
-							collector.on("collect", (reaction) => {
-								list.reactions.removeAll().then(async() => {
-									if(reaction.emoji.name === '➡️') {
-										currentPage += 1
-									} else if(reaction.emoji.name === '⬅️') {
-										currentPage -= 1
-									}
-			
-									list.edit(generateEmbed(currentPage))
-			
-									if(currentPage > 1) {
-										await list.react('⬅️')
-									}
-			
-									if(currentPage < pages) {
-										list.react('➡️')
-									}
+					if(proceed) {
+						message.channel.send(generateEmbed(1)).then((list) => {
+							let currentPage = 1
+				
+							if(pages > 1) {
+								list.react("➡️")
+				
+								collector.on("collect", (reaction) => {
+									list.reactions.removeAll().then(async() => {
+										if(reaction.emoji.name === '➡️') {
+											currentPage += 1
+										} else if(reaction.emoji.name === '⬅️') {
+											currentPage -= 1
+										}
+				
+										list.edit(generateEmbed(currentPage))
+				
+										if(currentPage > 1) {
+											await list.react('⬅️')
+										}
+				
+										if(currentPage < pages) {
+											list.react('➡️')
+										}
+									})
 								})
-							})
-			
-							collector.on("end", collected => {
-								message.channel.send("No Class Selected")
-								list.reactions.removeAll().then(async() => {
-									list.delete()
+				
+								collector.on("end", collected => {
+									message.channel.send("**No Class Selected**")
+									list.reactions.removeAll().then(async() => {
+										list.delete()
+									})
 								})
-							})
-						}
-					})
+							}
+						})
+					}
 				})
 			} else {
 				message.channel.send(`**${message.author} already have a profile on the database**`)
