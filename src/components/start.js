@@ -102,7 +102,7 @@ module.exports = {
 					list.awaitReactions(confirmationFilter, {max: 1, time: 30000, errors: ['time']}).then((collected) => {
 						if(collected.first().emoji.name === '✅') {
 							list.edit(generateEmbed(1)).then(() => {
-								await list.reactions.removeAll()
+								list.reactions.removeAll()
 							})
 
 							const collector = list.createReactionCollector(selectionFilter, {
