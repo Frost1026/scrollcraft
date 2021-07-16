@@ -96,7 +96,9 @@ module.exports = {
 						return reactions.includes(reaction.emoji.name) && user.id === message.author.id
 					}
 
-					const collector = list.createReactionCollector(filter)
+					const collector = list.createReactionCollector(filter, {
+						time: 120000
+					})
 
 					list.awaitReactions(filter, {max: 1, time: 150000, errors: ['time']}).then((collected) => {
 						const reaction = collected.first()
@@ -130,6 +132,13 @@ module.exports = {
 										}
 									})
 								})
+
+								collector.on("end", collected => {
+									message.channel.send("**No Class Selected**")
+									list.reactions.removeAll().then(async() => {
+										list.delete()
+									})
+								})
 							}
 						} else if(reaction.emoji.name === '❌') {
 							message.channel.send("Exited Character Creation")
@@ -139,7 +148,6 @@ module.exports = {
 						}
 					}).catch(err => {
 						console.log(err)
-						collector.stop()
 						message.channel.send("**Timed Out**")
 						list.reactions.removeAll().then(() => {
 							list.delete()
