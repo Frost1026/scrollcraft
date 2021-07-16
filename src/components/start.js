@@ -52,7 +52,6 @@ module.exports = {
 					const payloadEmbed = new discord.MessageEmbed()
 		
 					pages = payloadBuffer.length
-					console.log(pages)
 		
 					payloadBuffer[page - 1].forEach((value, index) => {
 						payloadEmbed.addField(`${value[0]} ${value[1].icon}` , value[1].desc)
@@ -104,6 +103,7 @@ module.exports = {
 					list.awaitReactions(filter, {max: 1, time: 150000, errors: ['time']}).then((collected) => {
 						const reaction = collected.first()
 
+						console.log(pages)
 						if(reaction.emoji.name === '✅') {
 							list.reactions.removeAll().then(() => {
 								list.edit(generateEmbed(1))
