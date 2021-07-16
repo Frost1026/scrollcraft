@@ -68,8 +68,8 @@ module.exports = {
 					return payloadEmbed
 				}
 
-				const createCharacter = (selectedClass) => {
-					console.log(payloadBuffer)
+				const createCharacter = (selectedIndex) => {
+					console.log(classes[payload[selectedIndex][0]])
 				}
 
 
