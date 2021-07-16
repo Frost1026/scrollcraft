@@ -74,95 +74,81 @@ module.exports = {
 					.setFooter("Everyone only have one choice at character creation, choose wisely")
 					.setTimestamp()
 
+				payload = Object.entries(classes).map(value => {
+					return value
+				})
+		
+				payload.forEach((value, index) => {
+					index += 1
+					if((index % pageLimit) === 0) {
+						payloadBuffer.push(payload.slice(initialIndex, index))
+						initialIndex += pageLimit
+					} else if(index === payload.length) {
+						payloadBuffer.push(payload.slice(initialIndex, index))
+					}
+				})
+
 				message.channel.send(readFirstEmbed).then((list) => {
 					list.react("✅").then(list.react("❌"))
 			
-					const filter = (reaction, user) => {
+					const confirmationFilter = (reaction, user) => {
 						return ['✅', '❌'].includes(reaction.emoji.name) && user.id === message.author.id
 					}
+
+					const selectionFilter = (reaction, user) => {
+						return ['⬅️', '➡️'].includes(reaction.emoji.name) && user.id === message.author.id
+					}
 	
-					const collector = list.createReactionCollector(filter, {
+					const collector = list.createReactionCollector(selectionFilter, {
 						time: 60000
 					})
-	
-					collector.on("collect", (reaction) => {
-						list.reactions.removeAll().then(async() => {
-							if(reaction.emoji.name === '✅') {
-								proceed = true
-								list.reactions.removeAll().then(async() => {
-									list.delete().then(() => {
-										payload = Object.entries(classes).map(value => {
-											return value
-										})
-								
-										payload.forEach((value, index) => {
-											index += 1
-											if((index % pageLimit) === 0) {
-												payloadBuffer.push(payload.slice(initialIndex, index))
-												initialIndex += pageLimit
-											} else if(index === payload.length) {
-												payloadBuffer.push(payload.slice(initialIndex, index))
-											}
-										})
-								
-										message.channel.send(generateEmbed(1)).then((list) => {
-											let currentPage = 1
-								
-											if(pages > 1) {
-												list.react("➡️")
-								
-												const filter = (reaction, user) => {
-													return ['⬅️', '➡️'].includes(reaction.emoji.name) && user.id === message.author.id
-												}
-								
-												const collector = list.createReactionCollector(filter, {
-													time: 60000
-												})
-								
-												collector.on("collect", (reaction) => {
-													list.reactions.removeAll().then(async() => {
-														if(reaction.emoji.name === '➡️') {
-															currentPage += 1
-														} else if(reaction.emoji.name === '⬅️') {
-															currentPage -= 1
-														}
-								
-														list.edit(generateEmbed(currentPage))
-								
-														if(currentPage > 1) {
-															await list.react('⬅️')
-														}
-								
-														if(currentPage < pages) {
-															list.react('➡️')
-														}
-													})
-												})
-								
-												collector.on("end", collected => {
-													message.channel.send("No Class Selected")
-													list.reactions.removeAll().then(async() => {
-														list.delete()
-													})
-												})
-											}
-										})
-									})
-								})
-							} else if(reaction.emoji.name === '❌') {
-								message.channel.send("Exited Character Creation")
-								list.reactions.removeAll().then(async() => {
-									list.delete()
-								})
-							}
 
+					list.awaitReactions(confirmationFilter, {time: 30000, errors: ['time']}).then(collected => {
+						if(collected.emoji.name === '✅') {
+							proceed = true
+						} else if(reaction.emoji.name === '❌') {
+							message.channel.send("Exited Character Creation")
+							list.reactions.removeAll().then(() => {
+								list.delete()
+							})
+						}
+					}).catch(err => {
+						message.channel.send("**Timed Out**")
+					})
+	
+					message.channel.send(generateEmbed(1)).then((list) => {
+						let currentPage = 1
+			
+						if(pages > 1) {
+							list.react("➡️")
+			
+							collector.on("collect", (reaction) => {
+								list.reactions.removeAll().then(async() => {
+									if(reaction.emoji.name === '➡️') {
+										currentPage += 1
+									} else if(reaction.emoji.name === '⬅️') {
+										currentPage -= 1
+									}
+			
+									list.edit(generateEmbed(currentPage))
+			
+									if(currentPage > 1) {
+										await list.react('⬅️')
+									}
+			
+									if(currentPage < pages) {
+										list.react('➡️')
+									}
+								})
+							})
+			
 							collector.on("end", collected => {
-								message.channel.send("Didn't Enter Character Creation")
+								message.channel.send("No Class Selected")
 								list.reactions.removeAll().then(async() => {
 									list.delete()
 								})
 							})
-						})
+						}
 					})
 				})
 			} else {
