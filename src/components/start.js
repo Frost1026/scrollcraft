@@ -100,10 +100,10 @@ module.exports = {
 					}
 
 					list.awaitReactions(confirmationFilter, {max: 1, time: 30000, errors: ['time']}).then((collected) => {
-						console.log(collected.first().emoji.name)
-
-						if(collected.emoji.name === '✅') {
-							list.edit(generateEmbed(1))
+						if(collected.first().emoji.name === '✅') {
+							list.edit(generateEmbed(1)).then((list_2) => {
+								console.log(list_2)
+							})
 							// message.channel.send(generateEmbed(1)).then((list_2) => {
 							// 	const collector = list_2.createReactionCollector(selectionFilter, {
 							// 		time: 60000
