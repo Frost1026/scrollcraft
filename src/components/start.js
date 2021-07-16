@@ -109,6 +109,8 @@ module.exports = {
 							})
 							
 							let currentPage = 1
+
+							console.log(pages)
 				
 							if(pages > 1) {
 								list.react("➡️")
