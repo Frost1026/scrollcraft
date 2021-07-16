@@ -39,7 +39,7 @@ module.exports = {
 
 				let proceed = false
 				let payload
-				let pages	
+				let pages 
 				let initialIndex = 0
 			
 				const pageLimit = 1
@@ -52,6 +52,7 @@ module.exports = {
 					const payloadEmbed = new discord.MessageEmbed()
 		
 					pages = payloadBuffer.length
+					console.log(pages)
 		
 					payloadBuffer[page - 1].forEach((value, index) => {
 						payloadEmbed.addField(`${value[0]} ${value[1].icon}` , value[1].desc)
@@ -109,8 +110,6 @@ module.exports = {
 							})
 							
 							let currentPage = 1
-
-							console.log(pages)
 				
 							if(pages > 1) {
 								list.react("➡️")
