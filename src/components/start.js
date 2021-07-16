@@ -69,7 +69,7 @@ module.exports = {
 				}
 
 				const createCharacter = (selectedClass) => {
-					console.log(payload)
+					console.log(payloadBuffer)
 				}
 
 
