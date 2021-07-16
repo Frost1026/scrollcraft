@@ -100,7 +100,7 @@ module.exports = {
 					}
 
 					list.awaitReactions(confirmationFilter, {max: 1, time: 30000, errors: ['time']}).then((collected) => {
-						console.log(collected._emoji.name)
+						console.log(collected.get(emoji))
 						if(collected.emoji.name === '✅') {
 							list.edit(generateEmbed(1))
 							// message.channel.send(generateEmbed(1)).then((list_2) => {
