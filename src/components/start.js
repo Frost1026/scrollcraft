@@ -105,7 +105,40 @@ module.exports = {
 
 					list.awaitReactions(confirmationFilter, {time: 30000, errors: ['time']}).then(collected => {
 						if(collected.emoji.name === '✅') {
-							proceed = true
+							message.channel.send(generateEmbed(1)).then((list) => {
+								let currentPage = 1
+					
+								if(pages > 1) {
+									list.react("➡️")
+					
+									collector.on("collect", (reaction) => {
+										list.reactions.removeAll().then(async() => {
+											if(reaction.emoji.name === '➡️') {
+												currentPage += 1
+											} else if(reaction.emoji.name === '⬅️') {
+												currentPage -= 1
+											}
+					
+											list.edit(generateEmbed(currentPage))
+					
+											if(currentPage > 1) {
+												await list.react('⬅️')
+											}
+					
+											if(currentPage < pages) {
+												list.react('➡️')
+											}
+										})
+									})
+					
+									collector.on("end", collected => {
+										message.channel.send("**No Class Selected**")
+										list.reactions.removeAll().then(async() => {
+											list.delete()
+										})
+									})
+								}
+							})
 						} else if(reaction.emoji.name === '❌') {
 							message.channel.send("Exited Character Creation")
 							list.reactions.removeAll().then(() => {
@@ -118,43 +151,6 @@ module.exports = {
 							list.delete()
 						})
 					})
-	
-					if(proceed) {
-						message.channel.send(generateEmbed(1)).then((list) => {
-							let currentPage = 1
-				
-							if(pages > 1) {
-								list.react("➡️")
-				
-								collector.on("collect", (reaction) => {
-									list.reactions.removeAll().then(async() => {
-										if(reaction.emoji.name === '➡️') {
-											currentPage += 1
-										} else if(reaction.emoji.name === '⬅️') {
-											currentPage -= 1
-										}
-				
-										list.edit(generateEmbed(currentPage))
-				
-										if(currentPage > 1) {
-											await list.react('⬅️')
-										}
-				
-										if(currentPage < pages) {
-											list.react('➡️')
-										}
-									})
-								})
-				
-								collector.on("end", collected => {
-									message.channel.send("**No Class Selected**")
-									list.reactions.removeAll().then(async() => {
-										list.delete()
-									})
-								})
-							}
-						})
-					}
 				})
 			} else {
 				message.channel.send(`**${message.author} already have a profile on the database**`)
