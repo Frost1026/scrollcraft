@@ -92,13 +92,13 @@ module.exports = {
 				message.channel.send(readFirstEmbed).then((list) => {
 					list.react("✅").then(list.react("❌"))
 			
-					const confirmationFilter = (reaction, user) => {
+					const filter = (reaction, user) => {
 						return reactions.includes(reaction.emoji.name) && user.id === message.author.id
 					}
 
 					const collector = list.createReactionCollector(filter)
 
-					list.awaitReactions(confirmationFilter, {max: 1, time: 150000, errors: ['time']}).then((collected) => {
+					list.awaitReactions(filter, {max: 1, time: 150000, errors: ['time']}).then((collected) => {
 						const reaction = collected.first()
 
 						if(reaction.emoji.name === '✅') {
