@@ -12,8 +12,6 @@ module.exports = {
             ..._options
         }
 
-        console.log(Object.entries(options))
-
         const button = new discordButton.MessageButton()
 
         Object.entries(options).forEach(value => {
