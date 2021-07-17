@@ -101,7 +101,7 @@ module.exports = {
 					list.awaitButtons(filter, {max: 1}).then(async (button) => {
 						await button.reply.defer()
 						console.log("test")
-						checkmark.setDisabled()
+						button.message.delete()
 					})
 				})
 
