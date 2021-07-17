@@ -19,12 +19,10 @@ module.exports = {
         Object.entries(options).forEach(value => {
             let parameter
 
-            console.log((value[0] === "id" || "url"))
-
-            if((value[0] === "id" || "url") && value[1]) {
+            if((value[0] === "id" || x === "url") && value[1]) {
                 parameter = value[0].toUpperCase()
             } else if(value[1]) {
-                parameter = value[0][0]
+                parameter = value[0][0].toUpperCase().concat(value[0].slice(1))
             }
 
             console.log(parameter)
