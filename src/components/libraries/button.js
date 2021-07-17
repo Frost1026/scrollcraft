@@ -18,27 +18,27 @@ module.exports = {
 
         Object.entries(options).forEach(value => {
             switch(true) {
-                case options.id:
+                case !!options.id:
                     console.log("ID exists")
                     break
 
-                case options.style:
+                case !!options.style:
                     console.log("Style exists")
                     break
 
-                case options.label:
+                case !!options.label:
                     console.log("Label exists")
                     break
 
-                case options.emoji:
+                case !!options.emoji:
                     console.log("Emoji exists")
                     break
 
-                case options.emojiAnimated:
+                case !!options.emojiAnimated:
                     console.log("Emoji Animated")
                     break
 
-                case options.url:
+                case !!options.url:
                     console.log("URL exists")
                     break
 
