@@ -86,7 +86,14 @@ module.exports = {
 					}
 				})
 
-				const button = new discordButton.Button()
+				const button = new discordButton.Button({
+					id: message.author.id,
+					style: "green",
+					label: "Select",
+					emoji: "✅"
+				})
+
+				message.channel.send(generateEmbed(1), button)
 
 				// message.channel.send(generateEmbed(1)).then((list) => {
 				// 	let currentPage = 1

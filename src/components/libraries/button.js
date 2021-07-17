@@ -1,7 +1,7 @@
 const discordButton = require("discord-buttons")
 
 module.exports = {
-    Button: function (_options) {
+    Button: function (_options = {}) {
         const options = {
             id: "default",
             style: "green",
