@@ -100,7 +100,7 @@ module.exports = {
 				message.channel.send(generateEmbed(1), button).then(list => {
 					list.awaitButtons(filter, {max: 1}).then((btn) => {
 						console.log("test")
-						btn.setDisabled()
+						console.log(btn)
 					})
 				})
 
