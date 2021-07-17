@@ -86,24 +86,22 @@ module.exports = {
 					}
 				})
 
-				const crossmark = new discordButton.Button()
+				// const checkmark = new discordButton.Button({
+				// 	id: `btn_${message.author.id}${Date.now()}`,
+				// 	style: "green",
+				// 	emoji: "✅"
+				// })
 
-				const checkmark = new discordButton.Button({
-					id: `btn_${message.author.id}${Date.now()}`,
-					style: "green",
-					emoji: "✅"
-				})
+				// const filter = (content) => {
+				// 	console.log(content.id)
+				// 	return true
+				// }
 
-				const filter = (content) => {
-					console.log(content.id)
-					return true
-				}
+				// message.channel.send(generateEmbed(1), checkmark).then(list => {
+				// 	list.awaitButtons(filter, {maxUsers: 1}).then(button => {
 
-				message.channel.send(generateEmbed(1), checkmark).then(list => {
-					list.awaitButtons(filter, {maxUsers: 1}).then(button => {
-
-					})
-				})
+				// 	})
+				// })
 
 				// message.channel.send(generateEmbed(1)).then((list) => {
 				// 	let currentPage = 1
