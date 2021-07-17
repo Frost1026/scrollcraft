@@ -6,9 +6,9 @@ module.exports = {
             id: "default",
             style: "green",
             label: "default",
-            emoji: null,
+            emoji: "",
             emojiAnimated: false,
-            url: null,
+            url: "",
             ..._options
         }
 
