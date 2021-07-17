@@ -23,7 +23,7 @@ module.exports = {
             if((parameter === "id" || parameter === "url") && argument) {
                 parameter = parameter.toUpperCase()
             } else if(value[1]) {
-                parameter = paramete[0].toUpperCase().concat(parameter.slice(1))
+                parameter = parameter[0].toUpperCase().concat(parameter.slice(1))
             }
 
             console.log(parameter)
