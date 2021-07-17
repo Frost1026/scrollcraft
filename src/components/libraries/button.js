@@ -6,18 +6,46 @@ module.exports = {
             id: "default",
             style: "green",
             label: "default",
-            emoji: "",
+            emoji: null,
             emojiAnimated: false,
-            url: "",
+            url: null,
             ..._options
         }
 
         console.log(options)
 
         const button = new discordButton.MessageButton()
-            .setID(options.id)
-            .setStyle(options.style)
-            .setEmoji(options.emoji)
-            .setDisabled()
+
+        Object.entries(options).forEach(value => {
+            switch(true) {
+                case options.id:
+                    console.log("ID exists")
+                    break
+
+                case options.style:
+                    console.log("Style exists")
+                    break
+
+                case options.label:
+                    console.log("Label exists")
+                    break
+
+                case options.emoji:
+                    console.log("Emoji exists")
+                    break
+
+                case options.emojiAnimated:
+                    console.log("Emoji Animated")
+                    break
+
+                case options.url:
+                    console.log("URL exists")
+                    break
+
+                default:
+                    console.log("All parameters null")
+                    break
+            }
+        })
     }
 }
