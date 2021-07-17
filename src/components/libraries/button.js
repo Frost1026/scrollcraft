@@ -26,7 +26,15 @@ module.exports = {
             }
 
             if(parameter) {
-                console.log(parameter)
+                let codeblock
+
+                if(value[0] === "emoji") {
+                    codeblock = `button.set${parameter}(${value[1]}, ${options.emojiAnimated})`
+                } else {
+                    codeblock = `button.set${parameter}(${value[1]})`
+                }
+
+                eval(codeblock)
             }
         })
     }
