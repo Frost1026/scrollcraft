@@ -19,6 +19,8 @@ module.exports = {
         Object.entries(options).forEach(value => {
             let parameter
 
+            console.log(value[1])
+
             if((value[0] === "id" || "url") && value[1]) {
                 parameter = value[0].toUpperCase()
             } else if(value[1]) {
