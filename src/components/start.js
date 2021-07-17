@@ -89,7 +89,6 @@ module.exports = {
 				const button = new discordButton.Button({
 					id: message.author.id,
 					style: "green",
-					label: "Select",
 					emoji: "✅"
 				})
 

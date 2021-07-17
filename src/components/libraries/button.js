@@ -5,7 +5,7 @@ module.exports = {
         const options = {
             id: "default",
             style: "green",
-            label: "default",
+            label: "",
             emoji: null,
             emojiAnimated: false,
             url: null,
@@ -34,7 +34,11 @@ module.exports = {
                     codeblock = `button.set${parameter}("${value[1]}")`
                 }
 
-                eval(codeblock)
+                try {
+                    eval(codeblock)
+                } catch(err) {
+                    console.log(err)
+                }
             }
         })
 
