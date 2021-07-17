@@ -98,7 +98,7 @@ module.exports = {
 				}
 
 				message.channel.send(generateEmbed(1), button).then(list => {
-					list.awaitButtons(filter, {time: 10000}).then(() => {
+					list.awaitButtons(filter, {max: 1}).then(() => {
 						console.log("test")
 					})
 				})
