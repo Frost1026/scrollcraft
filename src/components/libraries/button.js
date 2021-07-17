@@ -12,6 +12,6 @@ const buttonParameters = {
 module.exports = {
     Button: async(buttonParameters) => {
         console.log(buttonParameters)
-        console.log("test complete")
+        console.log("test done")
     }
 }
