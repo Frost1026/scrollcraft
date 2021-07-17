@@ -94,7 +94,7 @@ module.exports = {
 
 				const filter = (content, user) => {
 					console.log(content)
-					console.log(user)
+					console.log(user.first())
 				}
 
 				message.channel.send(generateEmbed(1), button).then(list => {
