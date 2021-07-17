@@ -99,7 +99,6 @@ module.exports = {
 
 				message.channel.send(generateEmbed(1), checkmark).then(list => {
 					list.awaitButtons(filter, {max: 1}).then(async (button) => {
-						await button.reply.defer()
 						console.log("test")
 						button.message.delete()
 					})
