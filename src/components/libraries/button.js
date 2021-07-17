@@ -16,6 +16,8 @@ module.exports = {
 
         const button = new discordButton.MessageButton()
 
+        console.log(!!emoji)
+
         Object.entries(options).forEach(value => {
             switch(true) {
                 case !!options.id:
