@@ -86,6 +86,8 @@ module.exports = {
 					}
 				})
 
+				const crossmark = new discordButton.Button()
+
 				const checkmark = new discordButton.Button({
 					id: `btn_${message.author.id}${Date.now()}`,
 					style: "green",
@@ -98,9 +100,8 @@ module.exports = {
 				}
 
 				message.channel.send(generateEmbed(1), checkmark).then(list => {
-					list.awaitButtons(filter, {max: 1}).then((button) => {
-						console.log("test")
-						console.log(button.first().message.delete())
+					list.awaitButtons(filter, {maxUsers: 1}).then(button => {
+
 					})
 				})
 

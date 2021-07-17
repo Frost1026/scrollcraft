@@ -5,7 +5,7 @@ module.exports = {
         const options = {
             id: "default",
             style: "green",
-            label: "",
+            label: null,
             emoji: null,
             emojiAnimated: false,
             url: null,
