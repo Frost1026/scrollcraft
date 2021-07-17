@@ -86,13 +86,7 @@ module.exports = {
 					}
 				})
 
-				const button = new discordButton.Button({
-					id: "test_id",
-					label: "test_label",
-					style: "test_style",
-					url: "test_url",
-					test: "dont_print"
-				})
+				const button = new discordButton.Button()
 
 				// message.channel.send(generateEmbed(1)).then((list) => {
 				// 	let currentPage = 1
