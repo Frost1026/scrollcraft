@@ -17,12 +17,13 @@ module.exports = {
         const button = new discordButton.MessageButton()
 
         Object.entries(options).forEach(value => {
-            let parameter
+            let parameter = value[0]
+            let argument = value[1]
 
-            if((value[0] === "id" || x === "url") && value[1]) {
-                parameter = value[0].toUpperCase()
+            if((parameter === "id" || parameter === "url") && argument) {
+                parameter = parameter.toUpperCase()
             } else if(value[1]) {
-                parameter = value[0][0].toUpperCase().concat(value[0].slice(1))
+                parameter = paramete[0].toUpperCase().concat(parameter.slice(1))
             }
 
             console.log(parameter)
