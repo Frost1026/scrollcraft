@@ -18,5 +18,6 @@ module.exports = {
             .setID(options.id)
             .setStyle(options.style)
             .setEmoji(options.emoji)
+            .setDisabled()
     }
 }
