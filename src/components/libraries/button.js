@@ -2,9 +2,6 @@ const discordButton = require("discord-buttons")
 
 module.exports = {
     Button: function (_options) {
-        // const button = new discordButton.MessageButton()
-        //     .setID(args.id)
-        //     .setStyle(args.setStyle)
         const options = {
             id: "default",
             style: "green",
@@ -16,5 +13,10 @@ module.exports = {
         }
 
         console.log(options)
+
+        const button = new discordButton.MessageButton()
+            .setID(options.id)
+            .setStyle(options.style)
+            .setEmoji(options.emoji)
     }
 }
