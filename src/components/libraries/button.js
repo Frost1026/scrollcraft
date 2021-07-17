@@ -37,5 +37,7 @@ module.exports = {
                 eval(codeblock)
             }
         })
+
+        return button
     }
 }
