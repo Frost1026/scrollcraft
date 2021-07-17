@@ -25,6 +25,7 @@ module.exports = {
                 parameter = value[0][0].toUpperCase()
             }
 
+            console.log(value[0][0])
             console.log(parameter)
         })
     }
