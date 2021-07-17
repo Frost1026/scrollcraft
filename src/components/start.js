@@ -87,7 +87,7 @@ module.exports = {
 				})
 
 				const button = new discordButton.Button({
-					id: `btn_${message.author.id}-${Date.now()}`,
+					id: `btn_${message.author.id}${Date.now()}`,
 					style: "green",
 					emoji: "✅"
 				})
@@ -98,7 +98,7 @@ module.exports = {
 				}
 
 				message.channel.send(generateEmbed(1), button).then(list => {
-					list.awaitButtons(filter, {time: 10000}, () => {
+					list.awaitButtons(filter, {time: 10000}).then(() => {
 						console.log("test")
 					})
 				})
