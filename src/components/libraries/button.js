@@ -25,7 +25,9 @@ module.exports = {
                 parameter = value[0][0].toUpperCase().concat(value[0].slice(1))
             }
 
-            console.log(parameter)
+            if(parameter) {
+                console.log(parameter)
+            }
         })
     }
 }
