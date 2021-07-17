@@ -10,8 +10,7 @@ const buttonParameters = {
 }
 
 module.exports = {
-    Button: async(buttonParameters) => {
+    Button: function (buttonParameters) {
         console.log(buttonParameters)
-        console.log("test done")
     }
 }
