@@ -87,13 +87,14 @@ module.exports = {
 				})
 
 				const button = new discordButton.Button({
-					id: message.author.id,
+					id: `btn_${message.author.id}-${Date.now()}`,
 					style: "green",
 					emoji: "✅"
 				})
 
-				const filter = (content, user) => {
-					console.log(user.id)
+				const filter = (content) => {
+					console.log(content.id)
+					return true
 				}
 
 				message.channel.send(generateEmbed(1), button).then(list => {
