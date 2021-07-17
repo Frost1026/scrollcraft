@@ -1,4 +1,4 @@
-const discord = require("discord.js")
+const discord = require("discord.js-light")
 const fs = require("fs")
 
 const commandDesc = {}

@@ -1,7 +1,8 @@
-const discord = require("discord.js")
+const discord = require("discord.js-light")
 const fs = require("fs")
 const mongoose = require("mongoose")
 const model = require("./models/model.js")
+const discordButton = require("./libraries/button.js")
 
 const classes_file = "./src/components/assets/classes.json"
 
@@ -37,14 +38,12 @@ module.exports = {
 			if(err == null) {
 				refreshJSONBuffer(classes_file, classes)
 
-				let proceed = false
 				let payload
 				let pages 
 				let initialIndex = 0
 			
 				const pageLimit = 1
 				const payloadBuffer = []
-				const reactions = ['✅', '❌', '⬅️', '➡️']
 
 				const readFirstEmbed = new discord.MessageEmbed()
 
@@ -69,9 +68,8 @@ module.exports = {
 				}
 
 				const createCharacter = (selectedIndex) => {
-					console.log(classes[payload[selectedIndex][0]])
+					const character = classes[payload[selectedIndex][0]]
 				}
-
 
 				//Main Code Starts
 				payload = Object.entries(classes).map(value => {
@@ -87,58 +85,55 @@ module.exports = {
 						payloadBuffer.push(payload.slice(initialIndex, index))
 					}
 				})
-			
-				const filter = (reaction, user) => {
-					return reactions.includes(reaction.emoji.name) && user.id === message.author.id
-				}
 
-				message.channel.send(generateEmbed(1)).then((list) => {
-					const collector = list.createReactionCollector(filter, {
-						time: 180000
-					})
-
-					let currentPage = 1
-
-					if(pages > 1) {
-						list.react('➡️').then(() => {
-							list.react('✅')
-						})
-		
-						collector.on("collect", (reaction) => {
-							list.reactions.removeAll().then(async() => {
-								if(reaction.emoji.name === '➡️') {
-									currentPage += 1
-								} else if(reaction.emoji.name === '⬅️') {
-									currentPage -= 1
-								} else if(reaction.emoji.name === '✅') {
-									//currentPage - 1 because it is one higher of the current array element index
-									createCharacter(currentPage - 1)
-								} else if(reaction.emoji.name === '❌') {
-
-								}
-		
-								list.edit(generateEmbed(currentPage))
-		
-								if(currentPage > 1) {
-									await list.react('⬅️')
-								}
-		
-								if(currentPage < pages) {
-									list.react('➡️')
-								}
-
-								list.react('✅')
-							})
-						})
-
-						collector.on("end", collected => {
-							message.channel.send("**Selection Timed Out**")
-							list.reactions.removeAll().then(async() => {
-								list.delete()
-							})
-						})
-					}
+				const button = new discordButton.Button({
+					id: "test_id",
+					label: "test_label",
+					style: "test_style",
+					test: "dont_print"
 				})
+
+				// message.channel.send(generateEmbed(1)).then((list) => {
+				// 	let currentPage = 1
+
+				// 	if(pages > 1) {
+				// 		list.react('➡️').then(() => {
+				// 			list.react('✅')
+				// 		})
+		
+				// 		collector.on("collect", (reaction) => {
+				// 			list.reactions.removeAll().then(async() => {
+				// 				if(reaction.emoji.name === '➡️') {
+				// 					currentPage += 1
+				// 				} else if(reaction.emoji.name === '⬅️') {
+				// 					currentPage -= 1
+				// 				} else if(reaction.emoji.name === '✅') {
+				// 					//currentPage - 1 because it is one higher of the current array element index
+				// 					createCharacter(currentPage - 1)
+				// 				}
+		
+				// 				list.edit(generateEmbed(currentPage))
+		
+				// 				if(currentPage > 1) {
+				// 					await list.react('⬅️')
+				// 				}
+		
+				// 				if(currentPage < pages) {
+				// 					list.react('➡️')
+				// 				}
+
+				// 				list.react('✅')
+				// 			})
+				// 		})
+
+				// 		collector.on("end", collected => {
+				// 			message.channel.send("**Selection Timed Out**")
+				// 			list.reactions.removeAll().then(async() => {
+				// 				list.delete()
+				// 			})
+				// 		})
+				// 	}
+				// })
 			} else {
 				message.channel.send(`**${message.author} already have a profile on the database**`)
 			}

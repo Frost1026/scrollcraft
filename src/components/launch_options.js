@@ -1,5 +1,5 @@
 const fs = require("fs")
-const discord = require("discord.js")
+const discord = require("discord.js-light")
 const option_file = "./src/components/configs/launch_options.json"
 
 const template = {

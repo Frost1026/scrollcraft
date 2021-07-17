@@ -87,11 +87,20 @@ const components_folder = "./src/components"
 const config_file = "./src/components/configs/config.json"
 const launchOptions_file = "./src/components/configs/launch_options.json"
 
-const discord = require("discord.js")
+const discord = require("discord.js-light")
 const mongoose = require("mongoose")
 const fs = require("fs")
 
-const client = new discord.Client()
+const client = new discord.Client({
+    cacheGuilds: true,
+    cacheChannels: true,
+    cacheOverwrites: false,
+    cacheRoles: false,
+    cacheEmojis: true,
+    cachePresences: false
+})
+
+require("discord-buttons")(client)
 
 //parse json file content from configs into javascript objects
 refreshJSONBuffer(config_file, config)
