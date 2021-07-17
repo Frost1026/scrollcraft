@@ -180,7 +180,7 @@ module.exports = {
 						if(options.table.length > 0 && exist) {
 							let deletion
 
-							const	confirmWords = ["delete launch options", "launch options delete", "launch options deletion", "confirm delete"]
+							const confirmWords = ["delete launch options", "launch options delete", "launch options deletion", "confirm delete"]
 							const deletionEmbed = new discord.MessageEmbed()
 							const confirmationEmbed = new discord.MessageEmbed()
 							const desciption = "Deleting said launch options means it is gone forever."

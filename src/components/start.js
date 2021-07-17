@@ -92,7 +92,16 @@ module.exports = {
 					emoji: "✅"
 				})
 
-				message.channel.send(generateEmbed(1), button)
+				const filter = (content, user) => {
+					console.log(content)
+					console.log(user)
+				}
+
+				message.channel.send(generateEmbed(1), button).then(list => {
+					list.awaitButtons(filter, {time: 10000}, () => {
+						console.log("test")
+					})
+				})
 
 				// message.channel.send(generateEmbed(1)).then((list) => {
 				// 	let currentPage = 1
