@@ -90,6 +90,7 @@ module.exports = {
 					id: "test_id",
 					label: "test_label",
 					style: "test_style",
+					url: "test_url",
 					test: "dont_print"
 				})
 
