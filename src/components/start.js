@@ -100,8 +100,7 @@ module.exports = {
 				message.channel.send(generateEmbed(1), checkmark).then(list => {
 					list.awaitButtons(filter, {max: 1}).then((button) => {
 						console.log("test")
-						console.log(button)
-						button.message.delete()
+						console.log(button.message)
 					})
 				})
 
