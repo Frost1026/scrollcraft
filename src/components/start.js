@@ -86,7 +86,7 @@ module.exports = {
 					}
 				})
 
-				const button = new discordButton.Button({
+				const checkmark = new discordButton.Button({
 					id: `btn_${message.author.id}${Date.now()}`,
 					style: "green",
 					emoji: "✅"
@@ -97,10 +97,11 @@ module.exports = {
 					return true
 				}
 
-				message.channel.send(generateEmbed(1), button).then(list => {
-					list.awaitButtons(filter, {max: 1}).then((btn) => {
+				message.channel.send(generateEmbed(1), checkmark).then(list => {
+					list.awaitButtons(filter, {max: 1}).then((button) => {
+						await button.reply.defer()
 						console.log("test")
-						console.log(button)
+						checkmark.setDisabled()
 					})
 				})
 
