@@ -135,6 +135,7 @@ module.exports = {
 							case buttonTypes['✅'].custom_id:
 								console.log("clicked checkmark")
 								button.first().message.edit(generateEmbed(1), {buttons: buttonStorage.buttons})
+								break
 						}
 					})
 				})
