@@ -123,11 +123,6 @@ module.exports = {
 					list.awaitButtons(filter, {max: 1}).then(button => {
 						console.log(button.first().id)
 						console.log(buttonTypes['✅'])
-						switch(button.first().id) {
-							case buttonTypes['✅'].id:
-								console.log("clicked checkmark")
-								break
-						}
 					})
 				})
 
