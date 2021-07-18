@@ -72,11 +72,12 @@ module.exports = {
 					const btnObject =  {}
 
 					if(emoji && style) {
-						btnObject[emoji] = new discordButton.Button({
+						btnObject.id.push(emoji)
+						btnObject.buttons.push(new discordButton.Button({
 							id: `btn_${message.author.id}${Date.now()}`,
 							style: style,
 							emoji: emoji
-						})
+						}))
 					}
 
 					return btnObject
@@ -105,7 +106,7 @@ module.exports = {
 					return response.clicker.id === message.author.id
 				}
 
-				message.channel.send(generateEmbed(1), generateButton("✅", "green")).then(list => {
+				message.channel.send(generateEmbed(1), generateButton("✅", "green").buttons).then(list => {
 					list.awaitButtons(filter, {max: 1}).then(button => {
 						button
 					})
