@@ -120,19 +120,22 @@ module.exports = {
 				}
 
 				message.channel.send(generateEmbed(1), {buttons: buttonStorage.buttons}).then(list => {
-					list.awaitButtons(filter, {max: 1}).then(button => {
+					list.awaitButtons(filter, {max: 1}).then(async(button) => {
 						switch(button.first().id) {
 							case buttonTypes['⬅️'].custom_id:
+								await button.reply.defer()
 								console.log("clicked left arrow")
 								button.first().message.edit(generateEmbed(1), {buttons: buttonStorage.buttons})
 								break
 							
 							case buttonTypes['➡️'].custom_id:
+								await button.reply.defer()
 								console.log("clicked right arrow")
 								button.first().message.edit(generateEmbed(1), {buttons: buttonStorage.buttons})
 								break
 
 							case buttonTypes['✅'].custom_id:
+								await button.reply.defer()
 								console.log("clicked checkmark")
 								button.first().message.edit(generateEmbed(1), {buttons: buttonStorage.buttons})
 								break
