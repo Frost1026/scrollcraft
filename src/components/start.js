@@ -101,6 +101,10 @@ module.exports = {
 					}
 				})
 
+				const filter = (response) => {
+					return response.clicker.id === message.author.idß
+				}
+
 				message.channel.send(generateEmbed(1), generateButton("✅", "green")).then(list => {
 					list.awaitButtons(filter, {maxUsers: 1}).then(button => {
 						console.log(button.id)
