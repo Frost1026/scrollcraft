@@ -3,6 +3,7 @@ const fs = require("fs")
 const mongoose = require("mongoose")
 const model = require("./models/model.js")
 const discordButton = require("./libraries/button.js")
+const button = require("./libraries/button.js")
 
 const classes_file = "./src/components/assets/classes.json"
 
@@ -67,6 +68,20 @@ module.exports = {
 					return payloadEmbed
 				}
 
+				const generateButton = (emoji = '', style = '') => {
+					const btnObject =  {}
+
+					if(emoji && style) {
+						btnObject[emoji] = new discordButton.Button({
+							id: `btn_${message.author.id}${Date.now()}`,
+							style: style,
+							emoji: emoji
+						})
+					}
+
+					return btnObject[emoji]
+				}
+
 				const createCharacter = (selectedIndex) => {
 					const character = classes[payload[selectedIndex][0]]
 				}
@@ -86,22 +101,12 @@ module.exports = {
 					}
 				})
 
-				// const checkmark = new discordButton.Button({
-				// 	id: `btn_${message.author.id}${Date.now()}`,
-				// 	style: "green",
-				// 	emoji: "✅"
-				// })
-
-				// const filter = (content) => {
-				// 	console.log(content.id)
-				// 	return true
-				// }
-
-				// message.channel.send(generateEmbed(1), checkmark).then(list => {
-				// 	list.awaitButtons(filter, {maxUsers: 1}).then(button => {
-
-				// 	})
-				// })
+				message.channel.send(generateEmbed(1), generateButton("✅", "green")).then(list => {
+					list.awaitButtons(filter, {maxUsers: 1}).then(button => {
+						console.log(button.id)
+						button.first().message.delete()
+					})
+				})
 
 				// message.channel.send(generateEmbed(1)).then((list) => {
 				// 	let currentPage = 1
