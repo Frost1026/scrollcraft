@@ -102,8 +102,7 @@ module.exports = {
 				})
 
 				const filter = (response) => {
-					console.log(response.clicker.id)
-					console.log(message.author.id)
+					console.log(response.clicker.id === message.author.id)
 					return response.clicker.id === message.author.id
 				}
 
