@@ -152,7 +152,6 @@ module.exports = {
 		
 								case buttonTypes['✅'].custom_id:
 									await button.reply.defer()
-									collector.stop()
 									selected = true
 									list.delete().then(() => {
 										message.channel.send(`${message.author} selected the **${payload[classIndex][0]}** class.`)
@@ -177,9 +176,11 @@ module.exports = {
 						})
 
 						collector.on("end", collected => {
-							list.delete().then(() => {
-								message.channel.send("**Timed Out**")
-							})
+							if(!selected) {
+								list.delete().then(() => {
+									message.channel.send("**Timed Out**")
+								})
+							}
 						})
 					})
 				}
