@@ -68,12 +68,12 @@ module.exports = {
 					return payloadEmbed
 				}
 
-				const generateButton = (emoji = '', style = '') => {
+				const generateButton = (_options = [{emoji: '', style: ""}]) => {
 					const btnObject =  {
 						id: [],
 						buttons: []
 					}
-
+					
 					if(emoji && style) {
 						btnObject.id.push(emoji)
 						btnObject.buttons.push(new discordButton.Button({
@@ -109,9 +109,24 @@ module.exports = {
 					return response.clicker.id === message.author.id
 				}
 
-				message.channel.send(generateEmbed(1), {buttons: generateButton("✅", "green").buttons}).then(list => {
+				const buttonTypes = [
+					{
+						emoji: '✅',
+						style: "green"
+					},
+					{
+						emoji: '➡️',
+						style: "grey"
+					},
+					{
+						emoji: '⬅️',
+						style: "grey"
+					}
+				]
+
+				message.channel.send(generateEmbed(1), {buttons: generateButton(buttonTypes).buttons}).then(list => {
 					list.awaitButtons(filter, {max: 1}).then(button => {
-						button
+						
 					})
 				})
 
