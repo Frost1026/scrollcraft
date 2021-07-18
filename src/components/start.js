@@ -45,8 +45,31 @@ module.exports = {
 			
 				const pageLimit = 1
 				const payloadBuffer = []
+				const buttonStorage = {
+					id: [],
+					buttons: []
+				}
 
 				const readFirstEmbed = new discord.MessageEmbed()
+
+				//Add new Buttons here in order of appearance
+				const buttonTypes = {
+					'⬅️': new discordButton.Button({
+						id: `btn_${message.author.id}${Date.now()}leftarrow`,
+						style: "grey",
+						emoji: '⬅️'
+					}),
+					'➡️': new discordButton.Button({
+						id: `btn_${message.author.id}${Date.now()}rightarrow`,
+						style: "grey",
+						emoji: '➡️'
+					}),
+					'✅': new discordButton.Button({
+						id: `btn_${message.author.id}${Date.now()}checkmark`,
+						style: "green",
+						emoji: '✅'
+					})
+				}
 
 				//Function Declaration
 				const generateEmbed = (page) => {
@@ -68,26 +91,6 @@ module.exports = {
 					return payloadEmbed
 				}
 
-				const generateButton = (_options = [{emoji: '', style: ""}]) => {
-					const btnObject =  {
-						id: [],
-						buttons: []
-					}
-					
-					_options.forEach((value, index) => {
-						if(value.emoji && value.style) {
-							btnObject.id.push(value.emoji)
-							btnObject.buttons.push(new discordButton.Button({
-								id: `btn_${message.author.id}${Date.now()}`,
-								style: value.style,
-								emoji: value.emoji
-							}))
-						}
-					})
-
-					return btnObject
-				}
-
 				const createCharacter = (selectedIndex) => {
 					const character = classes[payload[selectedIndex][0]]
 				}
@@ -107,26 +110,16 @@ module.exports = {
 					}
 				})
 
+				Object.entries(buttonTypes).forEach(value => {
+					buttonStorage.id.push(value[0])
+					buttonStorage.buttons.push(value[1])
+				})
+
 				const filter = (response) => {
 					return response.clicker.id === message.author.id
 				}
 
-				const buttonTypes = [
-					{
-						emoji: '✅',
-						style: "green"
-					},
-					{
-						emoji: '➡️',
-						style: "grey"
-					},
-					{
-						emoji: '⬅️',
-						style: "grey"
-					}
-				]
-
-				message.channel.send(generateEmbed(1), {buttons: generateButton(buttonTypes).buttons}).then(list => {
+				message.channel.send(generateEmbed(1), {buttons: buttonStorage.buttons}).then(list => {
 					list.awaitButtons(filter, {max: 1}).then(button => {
 						
 					})
