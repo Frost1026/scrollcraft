@@ -102,7 +102,7 @@ module.exports = {
 				})
 
 				const filter = (response) => {
-					return response.clicker.id === message.author.idß
+					return response.clicker.id === message.author.id
 				}
 
 				message.channel.send(generateEmbed(1), generateButton("✅", "green")).then(list => {
