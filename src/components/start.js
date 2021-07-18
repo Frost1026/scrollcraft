@@ -107,7 +107,7 @@ module.exports = {
 				}
 
 				message.channel.send(generateEmbed(1), generateButton("✅", "green")).then(list => {
-					list.awaitButtons(filter, {maxUsers: 1}).then(button => {
+					list.awaitButtons(filter, {max: 1}).then(button => {
 						console.log(button.id)
 						button.first().message.delete()
 					})
