@@ -146,10 +146,9 @@ module.exports = {
 		
 								case buttonTypes['✅'].custom_id:
 									await button.reply.defer()
-									list.delete().then(() => {
-										message.channel.send(`${message.author} selected the **${payload[classIndex][0]}** class.`)
-										createCharacter(classIndex)
-									})
+									list.delete()
+									message.channel.send(`${message.author} selected the **${payload[classIndex][0]}** class.`)
+									createCharacter(classIndex)
 									break
 							}
 
