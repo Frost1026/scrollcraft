@@ -121,8 +121,21 @@ module.exports = {
 
 				message.channel.send(generateEmbed(1), {buttons: buttonStorage.buttons}).then(list => {
 					list.awaitButtons(filter, {max: 1}).then(button => {
-						console.log(button.first().id)
-						console.log(buttonTypes['✅'].custom_id)
+						switch(button.first().id) {
+							case buttonTypes['⬅️'].custom_id:
+								console.log("clicked left arrow")
+								button.first().message.edit(generateEmbed(1), {buttons: buttonStorage.buttons})
+								break
+							
+							case buttonTypes['➡️'].custom_id:
+								console.log("clicked right arrow")
+								button.first().message.edit(generateEmbed(1), {buttons: buttonStorage.buttons})
+								break
+
+							case buttonTypes['✅'].custom_id:
+								console.log("clicked checkmark")
+								button.first().message.edit(generateEmbed(1), {buttons: buttonStorage.buttons})
+						}
 					})
 				})
 
