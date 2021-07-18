@@ -144,6 +144,7 @@ module.exports = {
 		
 								case buttonTypes['✅'].custom_id:
 									await button.reply.defer()
+									message.channel.send(`${message.author} selected the **${payload[currentPage][0]}** class.`)
 									createCharacter(currentPage - 1)
 									break
 							}
@@ -168,48 +169,6 @@ module.exports = {
 						})
 					})
 				}
-
-				// message.channel.send(generateEmbed(1)).then((list) => {
-				// 	let currentPage = 1
-
-				// 	if(pages > 1) {
-				// 		list.react('➡️').then(() => {
-				// 			list.react('✅')
-				// 		})
-		
-				// 		collector.on("collect", (reaction) => {
-				// 			list.reactions.removeAll().then(async() => {
-				// 				if(reaction.emoji.name === '➡️') {
-				// 					currentPage += 1
-				// 				} else if(reaction.emoji.name === '⬅️') {
-				// 					currentPage -= 1
-				// 				} else if(reaction.emoji.name === '✅') {
-				// 					//currentPage - 1 because it is one higher of the current array element index
-				// 					createCharacter(currentPage - 1)
-				// 				}
-		
-				// 				list.edit(generateEmbed(currentPage))
-		
-				// 				if(currentPage > 1) {
-				// 					await list.react('⬅️')
-				// 				}
-		
-				// 				if(currentPage < pages) {
-				// 					list.react('➡️')
-				// 				}
-
-				// 				list.react('✅')
-				// 			})
-				// 		})
-
-				// 		collector.on("end", collected => {
-				// 			message.channel.send("**Selection Timed Out**")
-				// 			list.reactions.removeAll().then(async() => {
-				// 				list.delete()
-				// 			})
-				// 		})
-				// 	}
-				// })
 			} else {
 				message.channel.send(`**${message.author} already have a profile on the database**`)
 			}
