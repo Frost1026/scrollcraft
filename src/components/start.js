@@ -92,8 +92,13 @@ module.exports = {
 				}
 
 				const createCharacter = (selectedIndex) => {
-					console.log(payload[selectedIndex][0])
-					const character = classes[payload[selectedIndex][0]]
+					const characterDetail = {
+						uid: `acc_${message.author.id}`,
+						username: message.author.username,
+						stats: classes[payload[selectedIndex][0]].stats
+					}
+
+					console.log(characterDetail)
 				}
 
 				//Main Code Starts
