@@ -79,7 +79,7 @@ module.exports = {
 						})
 					}
 
-					return btnObject[emoji]
+					return btnObject
 				}
 
 				const createCharacter = (selectedIndex) => {
@@ -102,14 +102,12 @@ module.exports = {
 				})
 
 				const filter = (response) => {
-					console.log(response.clicker.id === message.author.id)
 					return response.clicker.id === message.author.id
 				}
 
 				message.channel.send(generateEmbed(1), generateButton("✅", "green")).then(list => {
 					list.awaitButtons(filter, {max: 1}).then(button => {
-						console.log(button.first().id)
-						button.first().message.delete()
+						button
 					})
 				})
 
