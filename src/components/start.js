@@ -92,6 +92,7 @@ module.exports = {
 				}
 
 				const createCharacter = (selectedIndex) => {
+					console.log(payload[selectedIndex][0])
 					const character = classes[payload[selectedIndex][0]]
 				}
 
@@ -143,6 +144,7 @@ module.exports = {
 		
 								case buttonTypes['✅'].custom_id:
 									await button.reply.defer()
+									createCharacter(currentPage - 1)
 									break
 							}
 

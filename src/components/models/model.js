@@ -13,7 +13,7 @@ const schemas = [
 				dexterity: {type: Number, default: 0},
 				intelligence: {type: Number, default: 0},
 				agility: {type: Number, default: 0},
-				hp: {type: Number, default: 1000}
+				hp: {type: Number, default: 1000},
 			})
 		})
 	}
