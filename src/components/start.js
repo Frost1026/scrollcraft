@@ -120,7 +120,9 @@ module.exports = {
 				}
 
 				message.channel.send(generateEmbed(1), {buttons: buttonStorage.buttons}).then(list => {
-					list.awaitButtons(filter, {max: 1}).then(async(button) => {
+					const collector = list.createButtonCollector(filter, {time: 120000})
+
+					collector.on("collect", async(button) => {
 						switch(button.first().id) {
 							case buttonTypes['⬅️'].custom_id:
 								await button.first().reply.defer()
@@ -133,13 +135,19 @@ module.exports = {
 								console.log("clicked right arrow")
 								button.first().message.edit(generateEmbed(1), {buttons: buttonStorage.buttons})
 								break
-
+	
 							case buttonTypes['✅'].custom_id:
 								await button.first().reply.defer()
 								console.log("clicked checkmark")
 								button.first().message.edit(generateEmbed(1), {buttons: buttonStorage.buttons})
 								break
 						}
+					})
+
+					collector.on("end", collected => {
+						list.delete().then(() => {
+							message.channel.send("**Timed Out**")
+						})
 					})
 				})
 
