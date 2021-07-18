@@ -129,6 +129,8 @@ module.exports = {
 						const collector = list.createButtonCollector(filter, {time: 120000})
 
 						collector.on("collect", async(button) => {
+							const classIndex = currentPage - 1
+
 							currentBtnArray = []
 
 							switch(button.id) {
@@ -144,8 +146,10 @@ module.exports = {
 		
 								case buttonTypes['✅'].custom_id:
 									await button.reply.defer()
-									message.channel.send(`${message.author} selected the **${payload[currentPage][0]}** class.`)
-									createCharacter(currentPage - 1)
+									list.delete().then(() => {
+										message.channel.send(`${message.author} selected the **${payload[classIndex][0]}** class.`)
+										createCharacter(classIndex)
+									})
 									break
 							}
 
