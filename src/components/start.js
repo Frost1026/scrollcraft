@@ -74,14 +74,16 @@ module.exports = {
 						buttons: []
 					}
 					
-					if(emoji && style) {
-						btnObject.id.push(emoji)
-						btnObject.buttons.push(new discordButton.Button({
-							id: `btn_${message.author.id}${Date.now()}`,
-							style: style,
-							emoji: emoji
-						}))
-					}
+					_options.forEach((value, index) => {
+						if(value.emoji && value.style) {
+							btnObject.id.push(value.emoji)
+							btnObject.buttons.push(new discordButton.Button({
+								id: `btn_${message.author.id}${Date.now()}`,
+								style: value.style,
+								emoji: value.emoji
+							}))
+						}
+					})
 
 					return btnObject
 				}
