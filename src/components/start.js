@@ -122,7 +122,7 @@ module.exports = {
 				message.channel.send(generateEmbed(1), {buttons: buttonStorage.buttons}).then(list => {
 					list.awaitButtons(filter, {max: 1}).then(button => {
 						console.log(button.first().id)
-						console.log(buttonTypes['✅'].id)
+						console.log(buttonTypes['✅'])
 						switch(button.first().id) {
 							case buttonTypes['✅'].id:
 								console.log("clicked checkmark")
