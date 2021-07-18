@@ -124,6 +124,7 @@ module.exports = {
 					intinialBtnArray = buttonStorage.buttons.slice(1)
 					message.channel.send(generateEmbed(1), {buttons: intinialBtnArray}).then(list => {
 						let currentPage = 1
+						let selected = false
 						let currentBtnArray = []
 
 						const collector = list.createButtonCollector(filter, {time: 120000})
@@ -146,23 +147,27 @@ module.exports = {
 		
 								case buttonTypes['✅'].custom_id:
 									await button.reply.defer()
-									list.delete()
-									message.channel.send(`${message.author} selected the **${payload[classIndex][0]}** class.`)
-									createCharacter(classIndex)
+									selected = true
+									list.delete().then(() => {
+										message.channel.send(`${message.author} selected the **${payload[classIndex][0]}** class.`)
+										createCharacter(classIndex)
+									})
 									break
 							}
 
-							if(currentPage > 1) {
-								currentBtnArray.push(buttonStorage.buttons[0])
+							if(!selected) {
+								if(currentPage > 1) {
+									currentBtnArray.push(buttonStorage.buttons[0])
+								}
+
+								if(currentPage < pages) {
+									currentBtnArray.push(buttonStorage.buttons[1])
+								}
+
+								currentBtnArray.push(buttonStorage.buttons[2])
+
+								list.edit(generateEmbed(currentPage), {buttons: currentBtnArray})
 							}
-
-							if(currentPage < pages) {
-								currentBtnArray.push(buttonStorage.buttons[1])
-							}
-
-							currentBtnArray.push(buttonStorage.buttons[2])
-
-							list.edit(generateEmbed(currentPage), {buttons: currentBtnArray})
 						})
 
 						collector.on("end", collected => {
