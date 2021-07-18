@@ -154,7 +154,7 @@ module.exports = {
 									await button.reply.defer()
 									selected = true
 									list.delete().then(() => {
-										await message.channel.send(`${message.author} selected the **${payload[classIndex][0]}** class.`)
+										message.channel.send(`${message.author} selected the **${payload[classIndex][0]}** class.`)
 										message.channel.send("**Creating Character...**").then((progress) => {
 											createCharacter(classIndex)
 											progress.edit("**Character Creation Complete**")
