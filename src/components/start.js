@@ -156,8 +156,10 @@ module.exports = {
 								currentBtnArray.push(buttonStorage.buttons[1])
 							}
 
+							console.log("first")
 							currentBtnArray.push(buttonStorage.buttons[2])
 
+							console.log("second")
 							list.edit(generateEmbed(currentPage), {buttons: currentBtnArray})
 						})
 
