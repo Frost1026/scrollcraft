@@ -91,14 +91,14 @@ module.exports = {
 					return payloadEmbed
 				}
 
-				const createCharacter = async(selectedIndex) => {
+				const createCharacter = (selectedIndex) => {
 					const characterDetail = {
 						uid: `acc_${message.author.id}`,
 						username: message.author.username,
 						stats: classes[payload[selectedIndex][0]].stats
 					}
 
-					await model.profile.create(characterDetail)
+					model.profile.create(characterDetail)
 				}
 
 				//Main Code Starts
