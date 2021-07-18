@@ -134,13 +134,11 @@ module.exports = {
 								case buttonTypes['⬅️'].custom_id:
 									await button.reply.defer()
 									currentPage -= 1
-									list.edit(generateEmbed(1), {buttons: buttonStorage.buttons})
 									break
 								
 								case buttonTypes['➡️'].custom_id:
 									await button.reply.defer()
 									currentPage += 1
-									list.edit(generateEmbed(1), {buttons: buttonStorage.buttons})
 									break
 		
 								case buttonTypes['✅'].custom_id:
@@ -156,10 +154,8 @@ module.exports = {
 								currentBtnArray.push(buttonStorage.buttons[1])
 							}
 
-							console.log("first")
 							currentBtnArray.push(buttonStorage.buttons[2])
 
-							console.log("second")
 							list.edit(generateEmbed(currentPage), {buttons: currentBtnArray})
 						})
 
