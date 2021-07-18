@@ -119,37 +119,55 @@ module.exports = {
 					return response.clicker.id === message.author.id
 				}
 
-				message.channel.send(generateEmbed(1), {buttons: buttonStorage.buttons}).then(list => {
-					const collector = list.createButtonCollector(filter, {time: 120000})
+				if(payloadBuffer.length > 1) {
+					intinialBtnArray = buttonStorage.buttons.slice(1)
+					message.channel.send(generateEmbed(1), {buttons: intinialBtnArray}).then(list => {
+						let currentPage = 1
+						let currentBtnArray = []
 
-					collector.on("collect", async(button) => {
-						switch(button.id) {
-							case buttonTypes['⬅️'].custom_id:
-								await button.reply.defer()
-								console.log("clicked left arrow")
-								button.message.edit(generateEmbed(1), {buttons: buttonStorage.buttons})
-								break
-							
-							case buttonTypes['➡️'].custom_id:
-								await button.reply.defer()
-								console.log("clicked right arrow")
-								button.message.edit(generateEmbed(1), {buttons: buttonStorage.buttons})
-								break
-	
-							case buttonTypes['✅'].custom_id:
-								await button.reply.defer()
-								console.log("clicked checkmark")
-								button.message.edit(generateEmbed(1), {buttons: buttonStorage.buttons})
-								break
-						}
-					})
+						const collector = list.createButtonCollector(filter, {time: 120000})
 
-					collector.on("end", collected => {
-						list.delete().then(() => {
-							message.channel.send("**Timed Out**")
+						collector.on("collect", async(button) => {
+							currentBtnArray = []
+
+							switch(button.id) {
+								case buttonTypes['⬅️'].custom_id:
+									await button.reply.defer()
+									currentPage -= 1
+									list.edit(generateEmbed(1), {buttons: buttonStorage.buttons})
+									break
+								
+								case buttonTypes['➡️'].custom_id:
+									await button.reply.defer()
+									currentPage += 1
+									list.edit(generateEmbed(1), {buttons: buttonStorage.buttons})
+									break
+		
+								case buttonTypes['✅'].custom_id:
+									await button.reply.defer()
+									break
+							}
+
+							if(currentPage > 1) {
+								currentBtnArray.push(buttonStorage.buttons[0])
+							}
+
+							if(currentPage < pages) {
+								currentBtnArray.push(buttonStorage.buttons[1])
+							}
+
+							currentBtnArray.push(buttonStorage.buttons[2])
+
+							list.edit(generateEmbed(currentPage), {buttons: currentBtnArray})
+						})
+
+						collector.on("end", collected => {
+							list.delete().then(() => {
+								message.channel.send("**Timed Out**")
+							})
 						})
 					})
-				})
+				}
 
 				// message.channel.send(generateEmbed(1)).then((list) => {
 				// 	let currentPage = 1
