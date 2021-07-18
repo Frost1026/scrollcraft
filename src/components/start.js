@@ -69,11 +69,14 @@ module.exports = {
 				}
 
 				const generateButton = (emoji = '', style = '') => {
-					const btnObject =  {}
+					const btnObject =  {
+						id: [],
+						buttons: []
+					}
 
 					if(emoji && style) {
-						btnObject["id"].push(emoji)
-						btnObject["buttons"].push(new discordButton.Button({
+						btnObject.id.push(emoji)
+						btnObject.buttons.push(new discordButton.Button({
 							id: `btn_${message.author.id}${Date.now()}`,
 							style: style,
 							emoji: emoji
