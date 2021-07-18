@@ -98,7 +98,7 @@ module.exports = {
 						stats: classes[payload[selectedIndex][0]].stats
 					}
 
-					console.log(characterDetail)
+					await model.profile.create(characterDetail)
 				}
 
 				//Main Code Starts
@@ -154,8 +154,11 @@ module.exports = {
 									await button.reply.defer()
 									selected = true
 									list.delete().then(() => {
-										message.channel.send(`${message.author} selected the **${payload[classIndex][0]}** class.`)
-										createCharacter(classIndex)
+										await message.channel.send(`${message.author} selected the **${payload[classIndex][0]}** class.`)
+										message.channel.send("**Creating Character...**").then((progress) => {
+											createCharacter(classIndex)
+											progress.edit("**Character Creation Complete**")
+										})
 									})
 									break
 							}
