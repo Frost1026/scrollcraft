@@ -91,7 +91,7 @@ module.exports = {
 					return payloadEmbed
 				}
 
-				const createCharacter = (selectedIndex) => {
+				const createCharacter = async(selectedIndex) => {
 					const characterDetail = {
 						uid: `acc_${message.author.id}`,
 						username: message.author.username,
