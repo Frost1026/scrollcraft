@@ -109,7 +109,7 @@ module.exports = {
 					return response.clicker.id === message.author.id
 				}
 
-				message.channel.send(generateEmbed(1), generateButton("✅", "green").buttons).then(list => {
+				message.channel.send(generateEmbed(1), {buttons: generateButton("✅", "green").buttons}).then(list => {
 					list.awaitButtons(filter, {max: 1}).then(button => {
 						button
 					})
