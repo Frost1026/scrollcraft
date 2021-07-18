@@ -123,23 +123,23 @@ module.exports = {
 					const collector = list.createButtonCollector(filter, {time: 120000})
 
 					collector.on("collect", async(button) => {
-						switch(button.first().id) {
+						switch(button.id) {
 							case buttonTypes['⬅️'].custom_id:
-								await button.first().reply.defer()
+								await button.reply.defer()
 								console.log("clicked left arrow")
-								button.first().message.edit(generateEmbed(1), {buttons: buttonStorage.buttons})
+								button.message.edit(generateEmbed(1), {buttons: buttonStorage.buttons})
 								break
 							
 							case buttonTypes['➡️'].custom_id:
-								await button.first().reply.defer()
+								await button.reply.defer()
 								console.log("clicked right arrow")
-								button.first().message.edit(generateEmbed(1), {buttons: buttonStorage.buttons})
+								button.message.edit(generateEmbed(1), {buttons: buttonStorage.buttons})
 								break
 	
 							case buttonTypes['✅'].custom_id:
-								await button.first().reply.defer()
+								await button.reply.defer()
 								console.log("clicked checkmark")
-								button.first().message.edit(generateEmbed(1), {buttons: buttonStorage.buttons})
+								button.message.edit(generateEmbed(1), {buttons: buttonStorage.buttons})
 								break
 						}
 					})
