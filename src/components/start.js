@@ -102,6 +102,7 @@ module.exports = {
 				})
 
 				const filter = (response) => {
+					console.log(response.clicker.id)
 					return response.clicker.id === message.author.id
 				}
 
