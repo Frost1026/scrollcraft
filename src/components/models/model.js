@@ -20,7 +20,7 @@ const schemas = [
 ]
 
 schemas.forEach((value, index) => {
-	const model = mongoose.model(`${value.id}}_model`, value.schema)
+	const model = mongoose.model(`${value.id}_model`, value.schema)
 
 	if(!models.has(value.id)) {
 		models.set(value.id, model)
