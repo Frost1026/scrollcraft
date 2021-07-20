@@ -36,7 +36,7 @@ module.exports = {
 	desc: "Creates player profile for the game",
 	func: async (message, args, client, commands) => {
 		model.profile.find({uid: `acc_${message.author.id}`}, (err, docs) => {
-			if(docs) {
+			if(docs.length) {
 				console.log("Document exists")
 			}
 			console.log(err)
