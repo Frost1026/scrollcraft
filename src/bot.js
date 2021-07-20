@@ -169,8 +169,6 @@ client.on("message", async message => {
 		// refreshJSONBuffer(config_file, config)
 		// refreshJSONBuffer(launchOptions_file, launchOptions)
 
-		console.log(config)
-
 		//code to determine should command be run
 		if(command === "maintenance") {
 			if(config.table[0].WHITELIST.includes(message.author.username)) {
@@ -188,7 +186,7 @@ client.on("message", async message => {
 					commands.get(command)(message, args, client, commands, config)
 				} else {
 					if(config.table[0].WHITELIST.includes(message.author.username)) {
-						commands.get(command)(message, args, client, commands. config)
+						commands.get(command)(message, args, client, commands, config)
 					} else {
 						message.channel.send(`${message.author} I am **under maintenance** only bot admins can use commands`)
 					}
