@@ -169,7 +169,7 @@ client.on("message", async message => {
 		// refreshJSONBuffer(config_file, config)
 		// refreshJSONBuffer(launchOptions_file, launchOptions)
 
-		console.log(process.cwd())
+		console.log(config)
 
 		//code to determine should command be run
 		if(command === "maintenance") {
