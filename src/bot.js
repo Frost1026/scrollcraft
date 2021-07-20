@@ -165,6 +165,11 @@ client.on("message", async message => {
 		//logging command ran to user who initiated the command
 		console.log(`${message.author.username} wants to run the ${command} command with arguments of ${args}`)
 
+		refreshJSONBuffer(config_file, config)
+		refreshJSONBuffer(launchOptions_file, launchOptions)
+
+		console.log(config)
+
 		//code to determine should command be run
 		if(command === "maintenance") {
 			if(config.table[0].WHITELIST.includes(message.author.username)) {
