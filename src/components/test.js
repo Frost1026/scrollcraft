@@ -10,18 +10,29 @@ module.exports = {
     desc: "Testing commands and code in development 🛠",
     func: async (message, args, client, commands, config) => {
         if(config.table[0].WHITELIST.includes(message.author.username)){
-            let stats
-
             model.profile.find({uid: `acc_${message.author.id}`}, (err, docs) => {
-                stats = docs
-                console.log(docs)
-            })
-            
-            switch(args[0]) {
-                case "damage":
+                const damageCalculator = (_stats = {}) => {
+                    const stats = {
+                        docs, 
+                        ..._stats
+                    }
 
-                    break
-            }
+                    console.log(stats)
+                }
+    
+                switch(args[0]) {
+                    case "damage":
+                        damageCalculator({
+                            "strength": 2,
+                            "defence": 1,
+                            "dexterity": 6,
+                            "intelligence": 14,
+                            "agility": 4,
+                            "hp": 1200,
+                        })
+                        break
+                }
+            })
         }
     }
 }
