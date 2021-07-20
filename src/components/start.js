@@ -36,7 +36,9 @@ module.exports = {
 	desc: "Creates player profile for the game",
 	func: async (message, args, client, commands) => {
 		model.profile.find({uid: `acc_${message.author.id}`}, (err, docs) => {
-			console.log(docs)
+			if(docs) {
+				console.log("Document exists")
+			}
 			console.log(err)
 			if(err == null) {
 				refreshJSONBuffer(classes_file, classes)
