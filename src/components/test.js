@@ -9,6 +9,7 @@ module.exports = {
     key: "test",
     desc: "Testing commands and code in development 🛠",
     func: async (message, args, client, commands, config) => {
+        console.log(config)
         if(config.table[0].WHITELIST.includes(message.author.username)){
             model.profile.find({uid: `acc_${message.author.id}`}, (err, docs) => {
                 const damageCalculator = (_stats = {}) => {
