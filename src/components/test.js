@@ -12,12 +12,7 @@ module.exports = {
         if(config.table[0].WHITELIST.includes(message.author.username)){
             model.profile.find({uid: `acc_${message.author.id}`}, (err, docs) => {
                 const damageCalculator = (_stats = {}) => {
-                    const stats = {
-                        docs, 
-                        ..._stats
-                    }
-
-                    console.log(stats)
+                    
                 }
     
                 switch(args[0]) {
