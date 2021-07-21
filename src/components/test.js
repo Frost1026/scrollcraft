@@ -11,18 +11,23 @@ module.exports = {
     func: async (message, args, client, commands, config) => {
         if(config.table[0].WHITELIST.includes(message.author.username)){
             model.profile.find({uid: `acc_${message.author.id}`}, (err, docs) => {
-                const player = docs
+                if(docs) {
+                    const player = docs[0]
 
-                console.log(player)
+                    console.log(player)
+                    message.channel.send(`**Account found for <@${player.username}>**`)
 
-                const damageCalculator = (stats = {}) => {
-                    
-                }
-    
-                switch(args[0]) {
-                    case "damage":
-                        damageCalculator()
-                        break
+                    const damageCalculator = (stats = {}) => {
+                        
+                    }
+        
+                    switch(args[0]) {
+                        case "damage":
+                            damageCalculator()
+                            break
+                    }
+                } else {
+                    message.channel.send(`**No account found for <@${player.username}>**`)
                 }
             })
         }
