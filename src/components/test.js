@@ -11,7 +11,7 @@ module.exports = {
     func: async (message, args, client, commands, config) => {
         if(config.table[0].WHITELIST.includes(message.author.username)){
             model.profile.find({uid: `acc_${message.author.id}`}, (err, docs) => {
-                const player = docs[0]
+                const player = docs
 
                 console.log(player)
 
