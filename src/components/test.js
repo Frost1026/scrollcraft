@@ -15,7 +15,7 @@ module.exports = {
                     const player = docs[0]
 
                     console.log(player)
-                    message.channel.send(`**Account found for <@${player.username}>**`)
+                    console.log(client.users.cache.find(filter => filter === player.username).id)
 
                     const damageCalculator = (stats = {}) => {
                         
