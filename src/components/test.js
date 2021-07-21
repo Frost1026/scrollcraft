@@ -14,7 +14,7 @@ module.exports = {
                 if(docs) {
                     const player = docs[0]
 
-                    console.log(player)
+                    console.log(player.username)
                     console.log(client.users.cache.find(user => user.username === player.username).id)
 
                     const damageCalculator = (stats = {}) => {
