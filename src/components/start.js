@@ -54,14 +54,14 @@ module.exports = {
 
 				//Add new Buttons here in order of appearance
 				const buttonTypes = {
-					'⬅️': new discordButton.Button({
+					'＜': new discordButton.Button({
 						id: `btn_${message.author.id}${Date.now()}leftarrow`,
-						style: "grey",
+						style: "blue",
 						emoji: '⬅️'
 					}),
-					'➡️': new discordButton.Button({
+					'＞': new discordButton.Button({
 						id: `btn_${message.author.id}${Date.now()}rightarrow`,
-						style: "grey",
+						style: "blue",
 						emoji: '➡️'
 					}),
 					'✅': new discordButton.Button({
