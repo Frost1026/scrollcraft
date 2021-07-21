@@ -97,7 +97,8 @@ const client = new discord.Client({
     cacheOverwrites: false,
     cacheRoles: false,
     cacheEmojis: true,
-    cachePresences: false
+    cachePresences: false,
+	cacheMembers: true
 })
 
 require("discord-buttons")(client)
