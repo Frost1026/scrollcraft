@@ -69,6 +69,7 @@ module.exports = {
 					'✅': new discordButton.Button({
 						id: `btn_${message.author.id}${Date.now()}checkmark`,
 						style: "green",
+						label: "Select",
 						emoji: '✅'
 					})
 				}
