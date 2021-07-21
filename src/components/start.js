@@ -56,11 +56,13 @@ module.exports = {
 				const buttonTypes = {
 					'＜': new discordButton.Button({
 						id: `btn_${message.author.id}${Date.now()}leftarrow`,
+						label: "Previous",
 						style: "url",
 						emoji: '⬅️'
 					}),
 					'＞': new discordButton.Button({
 						id: `btn_${message.author.id}${Date.now()}rightarrow`,
+						label: "Next",
 						style: "url",
 						emoji: '➡️'
 					}),
