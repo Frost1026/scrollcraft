@@ -11,20 +11,17 @@ module.exports = {
     func: async (message, args, client, commands, config) => {
         if(config.table[0].WHITELIST.includes(message.author.username)){
             model.profile.find({uid: `acc_${message.author.id}`}, (err, docs) => {
-                const damageCalculator = (_stats = {}) => {
+                const player = docs[0]
+
+                console.log(player)
+
+                const damageCalculator = (stats = {}) => {
                     
                 }
     
                 switch(args[0]) {
                     case "damage":
-                        damageCalculator({
-                            "strength": 2,
-                            "defence": 1,
-                            "dexterity": 6,
-                            "intelligence": 14,
-                            "agility": 4,
-                            "hp": 1200,
-                        })
+                        damageCalculator()
                         break
                 }
             })
