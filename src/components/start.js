@@ -54,17 +54,17 @@ module.exports = {
 
 				//Add new Buttons here in order of appearance
 				const buttonTypes = {
-					'＜': new discordButton.Button({
+					'⬅️': new discordButton.Button({
 						id: `btn_${message.author.id}${Date.now()}leftarrow`,
-						label: "Previous",
-						style: "blurple",
-						emoji: '⬅️'
+						label: "< Previous",
+						style: "blurple"
+						// emoji: '⬅️'
 					}),
-					'＞': new discordButton.Button({
+					'➡️': new discordButton.Button({
 						id: `btn_${message.author.id}${Date.now()}rightarrow`,
-						label: "Next",
-						style: "blurple",
-						emoji: '➡️'
+						label: "> Next",
+						style: "blurple"
+						// emoji: '➡️'
 					}),
 					'✅': new discordButton.Button({
 						id: `btn_${message.author.id}${Date.now()}checkmark`,
