@@ -136,7 +136,7 @@ module.exports = {
 						intinialBtnRow.addComponents(value)
 					})
 
-					message.channel.send({embeds: [generateEmbed(1)], components: intinialBtnRow}).then(list => {
+					message.channel.send({embeds: [generateEmbed(1)], components: [intinialBtnRow]}).then(list => {
 						let currentPage = 1
 						let selected = false
 						let currentBtnArray = []
@@ -187,7 +187,7 @@ module.exports = {
 									currentBtnRow.addComponents(value)
 								})
 
-								list.edit({embeds: [generateEmbed(currentPage)], components: currentBtnRow})
+								list.edit({embeds: [generateEmbed(currentPage)], components: [currentBtnRow]})
 							}
 						})
 
