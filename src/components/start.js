@@ -1,4 +1,4 @@
-const discord = require("discord.js-light")
+const discord = require("discord.js")
 const fs = require("fs")
 const mongoose = require("mongoose")
 const model = require("./models/model.js")
@@ -55,21 +55,21 @@ module.exports = {
 				//Add new Buttons here in order of appearance
 				const buttonTypes = {
 					'⬅️': new discordButton.Button({
-						id: `btn_${message.author.id}${Date.now()}leftarrow`,
+						customid: `btn_${message.author.id}${Date.now()}leftarrow`,
 						label: "Previous",
-						style: "blurple",
+						style: "PRIMARY",
 						emoji: '⬅️'
 					}),
 					'➡️': new discordButton.Button({
-						id: `btn_${message.author.id}${Date.now()}rightarrow`,
+						customid: `btn_${message.author.id}${Date.now()}rightarrow`,
 						label: "Next",
-						style: "blurple",
+						style: "PRIMARY",
 						emoji: '➡️'
 					}),
 					'✅': new discordButton.Button({
-						id: `btn_${message.author.id}${Date.now()}checkmark`,
+						customid: `btn_${message.author.id}${Date.now()}checkmark`,
 						style: "green",
-						label: "Select",
+						label: "SECONDARY",
 						emoji: '✅'
 					})
 				}
@@ -130,7 +130,7 @@ module.exports = {
 
 				if(payloadBuffer.length > 1) {
 					intinialBtnArray = buttonStorage.buttons.slice(1)
-					message.channel.send(generateEmbed(1), {buttons: intinialBtnArray}).then(list => {
+					message.channel.send({embeds: [generateEmbed(1)], components: intinialBtnArray}).then(list => {
 						let currentPage = 1
 						let selected = false
 						let currentBtnArray = []
@@ -144,17 +144,17 @@ module.exports = {
 
 							switch(button.id) {
 								case buttonTypes['⬅️'].custom_id:
-									await button.reply.defer()
+									await button.deferReply()
 									currentPage -= 1
 									break
 								
 								case buttonTypes['➡️'].custom_id:
-									await button.reply.defer()
+									await button.deferReply()
 									currentPage += 1
 									break
 		
 								case buttonTypes['✅'].custom_id:
-									await button.reply.defer()
+									await button.deferReply()
 									selected = true
 									list.delete().then(() => {
 										message.channel.send(`${message.author} selected the **${payload[classIndex][0]}** class.`)
@@ -177,7 +177,7 @@ module.exports = {
 
 								currentBtnArray.push(buttonStorage.buttons[2])
 
-								list.edit(generateEmbed(currentPage), {buttons: currentBtnArray})
+								list.edit({embeds: [generateEmbed(currentPage)], components: currentBtnArray})
 							}
 						})
 

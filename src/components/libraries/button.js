@@ -1,9 +1,9 @@
-const discordButton = require("discord-buttons")
+const discord = require("discord.js")
 
 module.exports = {
     Button: function (_options = {}) {
         const options = {
-            id: "default",
+            customid: "default",
             style: "green",
             label: null,
             emoji: null,
@@ -12,15 +12,19 @@ module.exports = {
             ..._options
         }
 
-        const button = new discordButton.MessageButton()
+        const button = new discord.MessageButton()
 
         Object.entries(options).forEach(value => {
             let parameter
 
-            if((value[0] === "id" || value[0] === "url") && value[1]) {
-                parameter = value[0].toUpperCase()
-            } else if(value[1]) {
-                parameter = value[0][0].toUpperCase().concat(value[0].slice(1))
+            if(value[1]) {
+                if(value[0] === "customid") {
+                    parameter = "CustomId"
+                } else if(value[0] === "url") {
+                    parameter = value[0].toUpperCase()
+                } else {
+                    parameter = value[0][0].toUpperCase().concat(value[0].slice(1))
+                }
             }
 
             if(parameter) {

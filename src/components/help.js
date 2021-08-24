@@ -1,4 +1,4 @@
-const discord = require("discord.js-light")
+const discord = require("discord.js")
 const fs = require("fs")
 
 const commandDesc = {}
@@ -54,7 +54,7 @@ module.exports = {
             }
         })
 
-        message.channel.send(generateEmbed(1)).then((list) => {
+        message.channel.send({embeds: [generateEmbed(1)]}).then((list) => {
             let currentPage = 1
 
             if(pages > 1) {
@@ -76,7 +76,7 @@ module.exports = {
                             currentPage -= 1
                         }
 
-                        list.edit(generateEmbed(currentPage))
+                        list.edit({embeds: [generateEmbed(currentPage)]})
 
                         if(currentPage > 1) {
                             await list.react('⬅️')

@@ -1,5 +1,5 @@
 const fs = require("fs")
-const discord = require("discord.js-light")
+const discord = require("discord.js")
 const option_file = "./src/components/configs/launch_options.json"
 
 const template = {
@@ -117,7 +117,7 @@ module.exports = {
 							}
 						}
 
-						message.channel.send(generateEmbed(1)).then((list) => {
+						message.channel.send({embeds: [generateEmbed(1)]}).then((list) => {
 							let currentPage = 1
 
 							if(pages > 1) {
@@ -139,7 +139,7 @@ module.exports = {
 											currentPage -= 1
 										}
 
-										list.edit(generateEmbed(currentPage))
+										list.edit({embeds: [generateEmbed(currentPage)]})
 
 										if(currentPage > 1) {
 											await list.react('⬅️')
@@ -197,7 +197,7 @@ module.exports = {
 								.setTitle("Confirm Total Deletion.")
 								.addField("Type the following within 10s", typeToConfirm, false)
 
-							message.channel.send(deletionEmbed).then((form) => {
+							message.channel.send({embeds: [deletionEmbed]}).then((form) => {
 								form.react('✅').then(() => {
 									form.react('❌')
 								})
@@ -225,7 +225,7 @@ module.exports = {
 												return response.content == typeToConfirm && response.author.id === message.author.id 
 											}
 
-											form.edit(confirmationEmbed)
+											form.edit({embeds: [confirmationEmbed]})
 
 											message.channel.awaitMessages(captchaFilter, {max: 1, time: 10000, errors: ["time"]}).then(() => {
 												const optionsOld = JSON.parse(JSON.stringify(options, null, 2))
@@ -279,7 +279,7 @@ module.exports = {
 							.setTitle("Confirm Total Deletion.")
 							.addField("Type the following within 10s", typeToConfirm, false)
 
-						message.channel.send(deletionEmbed).then((form) => {
+						message.channel.send({embeds: [deletionEmbed]}).then((form) => {
 							form.react('✅').then(() => {
 								form.react('❌')
 							})
@@ -307,7 +307,7 @@ module.exports = {
 											return response.content == typeToConfirm && response.author.id === message.author.id 
 										}
 
-										form.edit(confirmationEmbed)
+										form.edit({embeds: [confirmationEmbed]})
 
 										message.channel.awaitMessages(captchaFilter, {max: 1, time: 10000, errors: ["time"]}).then(() => {
 											const optionsOld = JSON.parse(JSON.stringify(options, null, 2))
@@ -349,7 +349,7 @@ module.exports = {
 				.setColor('#ff0000')
 				.setTimestamp()
 
-			message.channel.send(adminOnly)
+			message.channel.send({embeds: [adminOnly]})
 		}
 	}
 }

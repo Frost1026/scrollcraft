@@ -87,21 +87,21 @@ const components_folder = "./src/components"
 const config_file = "./src/components/configs/config.json"
 const launchOptions_file = "./src/components/configs/launch_options.json"
 
-const discord = require("discord.js-light")
+const discord = require("discord.js")
 const mongoose = require("mongoose")
 const fs = require("fs")
 
 const client = new discord.Client({
-    cacheGuilds: true,
-    cacheChannels: true,
-    cacheOverwrites: false,
-    cacheRoles: false,
-    cacheEmojis: true,
-    cachePresences: false,
-	cacheMembers: true
+	intents: [
+		discord.Intents.FLAGS.GUILDS,
+		discord.Intents.FLAGS.GUILD_EMOJIS_AND_STICKERS,
+		discord.Intents.FLAGS.GUILD_INTEGRATIONS,
+		discord.Intents.FLAGS.GUILD_MEMBERS,
+		discord.Intents.FLAGS.GUILD_MESSAGES,
+		discord.Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
+		discord.Intents.FLAGS.GUILD_MESSAGE_TYPING
+	]
 })
-
-require("discord-buttons")(client)
 
 //parse json file content from configs into javascript objects
 refreshJSONBuffer(config_file, config)
@@ -127,7 +127,7 @@ mongoose.connect(config.table[0].MONGODB_URI, {
 }) .then(() => {
 	console.log("Database Connected")
 	//PLEASE REMOVE WHEN GOING INTO BETA 
-	client.channels.cache.get("861187530338336788").send("Bot Restarted")
+	// client.channels.cache.get("861187530338336788").send("Bot Restarted")
 })
 
 //bot initial running code similar to setup
@@ -154,7 +154,7 @@ client.once('ready', () => {
 });
 
 //command handling section
-client.on("message", async message => {
+client.on("messageCreate", async message => {
 	try{
 		if(!message.content.startsWith(prefix)) return
 
