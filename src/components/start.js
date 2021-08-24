@@ -129,8 +129,14 @@ module.exports = {
 				}
 
 				if(payloadBuffer.length > 1) {
-					intinialBtnArray = buttonStorage.buttons.slice(1)
-					message.channel.send({embeds: [generateEmbed(1)], components: intinialBtnArray}).then(list => {
+					let intinialBtnRow = new discord.MessageActionRow()
+					let currentBtnRow = new discord.MessageActionRow()
+					
+					buttonStorage.buttons.slice(1).forEach(value => {
+						intinialBtnRow.addComponents(value)
+					})
+
+					message.channel.send({embeds: [generateEmbed(1)], components: intinialBtnRow}).then(list => {
 						let currentPage = 1
 						let selected = false
 						let currentBtnArray = []
@@ -177,7 +183,11 @@ module.exports = {
 
 								currentBtnArray.push(buttonStorage.buttons[2])
 
-								list.edit({embeds: [generateEmbed(currentPage)], components: currentBtnArray})
+								currentBtnArray.forEach(value => {
+									currentBtnRow.addComponents(value)
+								})
+
+								list.edit({embeds: [generateEmbed(currentPage)], components: currentBtnRow})
 							}
 						})
 
