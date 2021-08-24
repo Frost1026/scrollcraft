@@ -127,7 +127,7 @@ mongoose.connect(config.table[0].MONGODB_URI, {
 }) .then(() => {
 	console.log("Database Connected")
 	//PLEASE REMOVE WHEN GOING INTO BETA 
-	// client.channels.cache.get("861187530338336788").send("Bot Restarted")
+	client.channels.cache.get("861187530338336788").send("Bot Restarted")
 })
 
 //bot initial running code similar to setup
