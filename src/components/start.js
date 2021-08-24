@@ -68,8 +68,8 @@ module.exports = {
 					}),
 					'✅': new discordButton.Button({
 						customid: `btn_${message.author.id}${Date.now()}checkmark`,
-						style: "green",
-						label: "SECONDARY",
+						style: "SECONDARY",
+						label: "Select",
 						emoji: '✅'
 					})
 				}
