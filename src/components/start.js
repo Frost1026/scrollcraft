@@ -130,7 +130,7 @@ module.exports = {
 
 				if(payloadBuffer.length > 1) {
 					intinialBtnArray = buttonStorage.buttons.slice(1)
-					message.channel.send({embeds: [generateEmbed(1)], components: {buttons: intinialBtnArray}}).then(list => {
+					message.channel.send({embeds: [generateEmbed(1)], components: [{buttons: intinialBtnArray}]}).then(list => {
 						let currentPage = 1
 						let selected = false
 						let currentBtnArray = []
@@ -177,7 +177,7 @@ module.exports = {
 
 								currentBtnArray.push(buttonStorage.buttons[2])
 
-								list.edit({embeds: [generateEmbed(currentPage)], components: {buttons: currentBtnArray}})
+								list.edit({embeds: [generateEmbed(currentPage)], components: [{buttons: currentBtnArray}]})
 							}
 						})
 
