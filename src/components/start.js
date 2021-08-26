@@ -123,16 +123,16 @@ module.exports = {
 					let currentPage = 1
 					let selected = false
 
-					let initialBtnRow = buttonRow.spliceComponents(0, 1)
+					buttonRow.spliceComponents(0, 1)
 
 					const filter = (interaction) => {
 						return interaction.user.id === message.author.id
 					}
 
-					message.channel.send({embeds: [generateEmbed(1)], components: [initialBtnRow]}).then(list => {
+					message.channel.send({embeds: [generateEmbed(1)], components: [buttonRow]}).then(list => {
 						const collector = list.createMessageComponentCollector({filter, time: 120000, componentType: "BUTTON"})
 
-						console.log(buttonRow)
+						buttonRow.spliceComponents(0, 0, new discordButton.Button(buttonTypes["⬅️"]))
 
 						// collector.on("collect", async(button) => {
 						// 	const classIndex = currentPage - 1
