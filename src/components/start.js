@@ -54,24 +54,24 @@ module.exports = {
 
 				//Add new Buttons here in order of appearance
 				const buttonTypes = {
-					'⬅️': new discordButton.Button({
-						customid: `btn_${message.author.id}${Date.now()}leftarrow`,
+					'⬅️': {
+						customid: `btn_${message.author.id}${message.id}leftarrow`,
 						label: "Previous",
 						style: "PRIMARY",
 						emoji: '⬅️'
-					}),
-					'➡️': new discordButton.Button({
-						customid: `btn_${message.author.id}${Date.now()}rightarrow`,
+					},
+					'➡️': {
+						customid: `btn_${message.author.id}${message.id}rightarrow`,
 						label: "Next",
 						style: "PRIMARY",
 						emoji: '➡️'
-					}),
-					'✅': new discordButton.Button({
-						customid: `btn_${message.author.id}${Date.now()}checkmark`,
+					},
+					'✅': {
+						customid: `btn_${message.author.id}${message.id}checkmark`,
 						style: "SECONDARY",
 						label: "Select",
 						emoji: '✅'
-					})
+					}
 				}
 
 				//Function Declaration
@@ -121,7 +121,7 @@ module.exports = {
 
 				Object.entries(buttonTypes).forEach(value => {
 					buttonStorage.id.push(value[0])
-					buttonStorage.buttons.push(value[1])
+					buttonStorage.buttons.push(new discordButton.Button(value[1]))
 				})
 
 				const filter = (interaction) => {
