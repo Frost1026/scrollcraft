@@ -160,8 +160,6 @@ module.exports = {
 									break
 							}
 
-							console.log(buttonRow)
-
 							buttonRow = new discord.MessageActionRow()
 							buttonRow.addComponents(new discordButton.Button(buttonTypes["✅"]))
 
@@ -172,6 +170,8 @@ module.exports = {
 							if(currentPage < pages) {
 								buttonRow.spliceComponents(1, 0, new discordButton.Button(buttonTypes["➡️"]))
 							}
+
+							console.log(buttonRow)
 
 							if(!selected) {
 								list.edit({embeds: [generateEmbed(currentPage)], components: [buttonRow]})
