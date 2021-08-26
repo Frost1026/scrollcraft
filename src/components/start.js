@@ -144,6 +144,7 @@ module.exports = {
 									if(currentPage < pages) {
 										buttonRow.spliceComponents(1, 0, new discordButton.Button(buttonTypes["➡️"]))
 									}
+									console.log(buttonRow)
 									break
 								
 								case buttonTypes['➡️'].customid:
@@ -153,6 +154,7 @@ module.exports = {
 									if(currentPage > 1) {
 										buttonRow.spliceComponents(0, 0, new discordButton.Button(buttonTypes["⬅️"]))
 									}
+									console.log(buttonRow)
 									break
 		
 								case buttonTypes['✅'].customid:
