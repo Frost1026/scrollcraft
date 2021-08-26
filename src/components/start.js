@@ -141,7 +141,7 @@ module.exports = {
 									await button.deferUpdate()
 									currentPage -= 1
 
-									if(currentPage < pages) {
+									if(currentPage < pages && buttonRow.components.length < 3) {
 										buttonRow.spliceComponents(1, 0, new discordButton.Button(buttonTypes["➡️"]))
 									}
 									break
@@ -150,7 +150,7 @@ module.exports = {
 									await button.deferUpdate()
 									currentPage += 1
 
-									if(currentPage > 1) {
+									if(currentPage > 1 && buttonRow.components.length < 3) {
 										buttonRow.spliceComponents(0, 0, new discordButton.Button(buttonTypes["⬅️"]))
 									}
 									break
@@ -168,7 +168,6 @@ module.exports = {
 									break
 							}
 
-							console.log(buttonRow.components.length)
 							console.log(buttonRow)
 
 							if(!selected) {
