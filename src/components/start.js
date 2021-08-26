@@ -136,6 +136,9 @@ module.exports = {
 						collector.on("collect", async(button) => {
 							const classIndex = currentPage - 1
 
+							console.log(buttonRow.length)
+							console.log(buttonRow)
+
 							switch(button.customId) {
 								case buttonTypes['⬅️'].customid:
 									await button.deferUpdate()
@@ -144,7 +147,6 @@ module.exports = {
 									if(currentPage < pages) {
 										buttonRow.spliceComponents(1, 0, new discordButton.Button(buttonTypes["➡️"]))
 									}
-									console.log(buttonRow)
 									break
 								
 								case buttonTypes['➡️'].customid:
@@ -154,7 +156,6 @@ module.exports = {
 									if(currentPage > 1) {
 										buttonRow.spliceComponents(0, 0, new discordButton.Button(buttonTypes["⬅️"]))
 									}
-									console.log(buttonRow)
 									break
 		
 								case buttonTypes['✅'].customid:
