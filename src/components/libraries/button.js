@@ -27,8 +27,6 @@ module.exports = {
                 }
             }
 
-            console.log(parameter)
-
             if(parameter) {
                 let codeblock
 
