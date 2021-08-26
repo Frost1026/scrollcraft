@@ -135,29 +135,29 @@ module.exports = {
 						collector.on("collect", async(button) => {
 							const classIndex = currentPage - 1
 
-							switch(button.id) {
-								case buttonTypes['⬅️'].customid:
-									await button.deferUpdate()
-									currentPage -= 1
-									break
+							// switch(button.id) {
+							// 	case buttonTypes['⬅️'].customid:
+							// 		await button.deferUpdate()
+							// 		currentPage -= 1
+							// 		break
 								
-								case buttonTypes['➡️'].customid:
-									await button.deferUpdate()
-									currentPage += 1
-									break
+							// 	case buttonTypes['➡️'].customid:
+							// 		await button.deferUpdate()
+							// 		currentPage += 1
+							// 		break
 		
-								case buttonTypes['✅'].customid:
-									await button.deferUpdate()
-									selected = true
-									list.delete().then(() => {
-										message.channel.send(`${message.author} selected the **${payload[classIndex][0]}** class.`)
-										message.channel.send("**Creating Character...**").then((progress) => {
-											createCharacter(classIndex)
-											progress.edit("**Character Creation Complete**")
-										})
-									})
-									break
-							}
+							// 	case buttonTypes['✅'].customid:
+							// 		await button.deferUpdate()
+							// 		selected = true
+							// 		list.delete().then(() => {
+							// 			message.channel.send(`${message.author} selected the **${payload[classIndex][0]}** class.`)
+							// 			message.channel.send("**Creating Character...**").then((progress) => {
+							// 				createCharacter(classIndex)
+							// 				progress.edit("**Character Creation Complete**")
+							// 			})
+							// 		})
+							// 		break
+							// }
 
 							if(!selected) {
 								if(currentPage > 1) {
