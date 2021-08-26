@@ -124,8 +124,8 @@ module.exports = {
 					buttonStorage.buttons.push(value[1])
 				})
 
-				const filter = (response) => {
-					return response.clicker.id === message.author.id
+				const filter = (interaction) => {
+					return interaction.user.id === message.author.id
 				}
 
 				if(payloadBuffer.length > 1) {
@@ -141,7 +141,7 @@ module.exports = {
 						let selected = false
 						let currentBtnArray = []
 
-						const collector = list.createButtonCollector(filter, {time: 120000})
+						const collector = list.createMessageComponentCollector(filter, {time: 120000})
 
 						collector.on("collect", async(button) => {
 							const classIndex = currentPage - 1
