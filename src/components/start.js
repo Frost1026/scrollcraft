@@ -136,9 +136,6 @@ module.exports = {
 						collector.on("collect", async(button) => {
 							const classIndex = currentPage - 1
 
-							console.log(buttonRow.length)
-							console.log(buttonRow)
-
 							switch(button.customId) {
 								case buttonTypes['⬅️'].customid:
 									await button.deferUpdate()
@@ -170,6 +167,9 @@ module.exports = {
 									})
 									break
 							}
+
+							console.log(buttonRow.components.length)
+							console.log(buttonRow)
 
 							if(!selected) {
 								list.edit({embeds: [generateEmbed(currentPage)], components: [buttonRow]})
