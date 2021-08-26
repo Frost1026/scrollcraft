@@ -127,6 +127,7 @@ module.exports = {
 
 					const filter = (interaction) => {
 						return interaction.user.id === message.author.id
+						console.log("oi")
 					}
 
 					message.channel.send({embeds: [generateEmbed(1)], components: [initialBtnRow]}).then(list => {
