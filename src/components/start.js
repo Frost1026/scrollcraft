@@ -1,6 +1,7 @@
 const discord = require("discord.js")
 const fs = require("fs")
 const mongoose = require("mongoose")
+const wait = require('util').promisify(setTimeout);
 const model = require("./models/model.js")
 const discordButton = require("./libraries/button.js")
 const button = require("./libraries/button.js")
@@ -135,39 +136,39 @@ module.exports = {
 						collector.on("collect", async(button) => {
 							const classIndex = currentPage - 1
 
-							// switch(button.id) {
-							// 	case buttonTypes['⬅️'].customid:
-							// 		await button.deferUpdate()
-							// 		currentPage -= 1
-							// 		break
+							switch(button.id) {
+								case buttonTypes['⬅️'].customid:
+									await button.deferUpdate()
+									currentPage -= 1
+
+									if(currentPage < pages) {
+										buttonRow.spliceComponents(1, 0, new discordButton.Button(buttonTypes["➡️"]))
+									}
+									break
 								
-							// 	case buttonTypes['➡️'].customid:
-							// 		await button.deferUpdate()
-							// 		currentPage += 1
-							// 		break
+								case buttonTypes['➡️'].customid:
+									await button.deferUpdate()
+									currentPage += 1
+
+									if(currentPage > 1) {
+										buttonRow.spliceComponents(0, 0, new discordButton.Button(buttonTypes["⬅️"]))
+									}
+									break
 		
-							// 	case buttonTypes['✅'].customid:
-							// 		await button.deferUpdate()
-							// 		selected = true
-							// 		list.delete().then(() => {
-							// 			message.channel.send(`${message.author} selected the **${payload[classIndex][0]}** class.`)
-							// 			message.channel.send("**Creating Character...**").then((progress) => {
-							// 				createCharacter(classIndex)
-							// 				progress.edit("**Character Creation Complete**")
-							// 			})
-							// 		})
-							// 		break
-							// }
+								case buttonTypes['✅'].customid:
+									await button.deferUpdate()
+									selected = true
+									list.delete().then(() => {
+										message.channel.send(`${message.author} selected the **${payload[classIndex][0]}** class.`)
+										message.channel.send("**Creating Character...**").then((progress) => {
+											createCharacter(classIndex)
+											progress.edit("**Character Creation Complete**")
+										})
+									})
+									break
+							}
 
 							if(!selected) {
-								if(currentPage > 1) {
-									buttonRow.spliceComponents(0, 0, new discordButton.Button(buttonTypes["⬅️"]))
-								}
-
-								if(currentPage < pages) {
-									buttonRow.spliceComponents(1, 0, new discordButton.Button(buttonTypes["➡️"]))
-								}
-
 								list.edit({embeds: [generateEmbed(currentPage)], components: [buttonRow]})
 							}
 						})
