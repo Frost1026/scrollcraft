@@ -126,89 +126,63 @@ module.exports = {
 					let initialBtnRow = buttonRow.spliceComponents(0, 1)
 
 					const filter = (interaction) => {
-						console.log("oi")
 						return interaction.user.id === message.author.id
 					}
 
 					message.channel.send({embeds: [generateEmbed(1)], components: [initialBtnRow]}).then(list => {
 						const collector = list.createMessageComponentCollector({filter, time: 120000, componentType: "BUTTON"})
+
+						console.log(buttonRow)
+
+						// collector.on("collect", async(button) => {
+						// 	const classIndex = currentPage - 1
+
+						// 	switch(button.id) {
+						// 		case buttonTypes['⬅️'].customid:
+						// 			await button.deferUpdate()
+						// 			currentPage -= 1
+						// 			break
+								
+						// 		case buttonTypes['➡️'].customid:
+						// 			await button.deferUpdate()
+						// 			currentPage += 1
+						// 			break
+		
+						// 		case buttonTypes['✅'].customid:
+						// 			await button.deferUpdate()
+						// 			selected = true
+						// 			list.delete().then(() => {
+						// 				message.channel.send(`${message.author} selected the **${payload[classIndex][0]}** class.`)
+						// 				message.channel.send("**Creating Character...**").then((progress) => {
+						// 					createCharacter(classIndex)
+						// 					progress.edit("**Character Creation Complete**")
+						// 				})
+						// 			})
+						// 			break
+						// 	}
+
+						// 	if(!selected) {
+						// 		if(currentPage > 1) {
+						// 			currentBtnArray.push(buttonStorage.buttons[0])
+						// 		}
+
+						// 		if(currentPage < pages) {
+						// 			currentBtnArray.push(buttonStorage.buttons[1])
+						// 		}
+
+						// 		list.edit({embeds: [generateEmbed(currentPage)], components: [currentBtnRow]})
+						// 	}
+						// })
+
+						// collector.on("end", collected => {
+						// 	if(!selected) {
+						// 		list.delete().then(() => {
+						// 			message.channel.send("**Timed Out**")
+						// 		})
+						// 	}
+						// })
 					})
 				}
-
-				// if(payloadBuffer.length > 1) {
-				// 	let intinialBtnRow = new discord.MessageActionRow()
-				// 	let currentBtnRow = new discord.MessageActionRow()
-					
-				// 	buttonStorage.buttons.slice(1).forEach(value => {
-				// 		intinialBtnRow.addComponents(value)
-				// 	})
-
-				// 	message.channel.send({embeds: [generateEmbed(1)], components: [intinialBtnRow]}).then(list => {
-				// 		let currentPage = 1
-				// 		let selected = false
-				// 		let currentBtnArray = []
-
-				// 		const collector = list.createMessageComponentCollector(filter, {time: 120000})
-
-				// 		collector.on("collect", async(button) => {
-				// 			console.log(buttonStorage.buttons)
-
-				// 			const classIndex = currentPage - 1
-
-				// 			currentBtnArray = []
-
-				// 			switch(button.id) {
-				// 				case buttonTypes['⬅️'].customid:
-				// 					await button.deferReply()
-				// 					currentPage -= 1
-				// 					break
-								
-				// 				case buttonTypes['➡️'].customid:
-				// 					await button.deferReply()
-				// 					currentPage += 1
-				// 					break
-		
-				// 				case buttonTypes['✅'].customid:
-				// 					await button.deferReply()
-				// 					selected = true
-				// 					list.delete().then(() => {
-				// 						message.channel.send(`${message.author} selected the **${payload[classIndex][0]}** class.`)
-				// 						message.channel.send("**Creating Character...**").then((progress) => {
-				// 							createCharacter(classIndex)
-				// 							progress.edit("**Character Creation Complete**")
-				// 						})
-				// 					})
-				// 					break
-				// 			}
-
-				// 			if(!selected) {
-				// 				if(currentPage > 1) {
-				// 					currentBtnArray.push(buttonStorage.buttons[0])
-				// 				}
-
-				// 				if(currentPage < pages) {
-				// 					currentBtnArray.push(buttonStorage.buttons[1])
-				// 				}
-
-				// 				currentBtnArray.push(buttonStorage.buttons[2])
-
-				// 				currentBtnArray.forEach(value => {
-				// 					currentBtnRow.addComponents(value)
-				// 				})
-
-				// 				list.edit({embeds: [generateEmbed(currentPage)], components: [currentBtnRow]})
-				// 			}
-				// 		})
-
-				// 		collector.on("end", collected => {
-				// 			if(!selected) {
-				// 				list.delete().then(() => {
-				// 					message.channel.send("**Timed Out**")
-				// 				})
-				// 			}
-				// 		})
-				// 	})
-				// }
 			} else {
 				message.channel.send(`**${message.author} already have a profile on the database**`)
 			}
