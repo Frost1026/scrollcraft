@@ -163,15 +163,15 @@ module.exports = {
 							buttonRow = new discord.MessageActionRow()
 
 							if(currentPage > 1) {
-								buttonRow.addComponents(0, 0, new discordButton.Button(buttonTypes["⬅️"]))
+								buttonRow.addComponents(new discordButton.Button(buttonTypes["⬅️"]))
 							}
 
 							if(currentPage < pages) {
-								buttonRow.addComponents(1, 0, new discordButton.Button(buttonTypes["➡️"]))
+								buttonRow.addComponents(new discordButton.Button(buttonTypes["➡️"]))
 							}
 
 							buttonRow.addComponents(new discordButton.Button(buttonTypes["✅"]))
-							
+
 							console.log(buttonRow)
 
 							if(!selected) {
