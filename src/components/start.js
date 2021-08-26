@@ -168,7 +168,7 @@ module.exports = {
 									buttonRow.spliceComponents(1, 0, new discordButton.Button(buttonTypes["➡️"]))
 								}
 
-								list.edit({embeds: [generateEmbed(currentPage)], components: [currentBtnRow]})
+								list.edit({embeds: [generateEmbed(currentPage)], components: [buttonRow]})
 							}
 						})
 
