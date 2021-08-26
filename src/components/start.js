@@ -134,6 +134,8 @@ module.exports = {
 
 						buttonRow.spliceComponents(0, 0, new discordButton.Button(buttonTypes["⬅️"]))
 
+						console.log(buttonRow)
+
 						// collector.on("collect", async(button) => {
 						// 	const classIndex = currentPage - 1
 
