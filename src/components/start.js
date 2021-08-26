@@ -131,7 +131,7 @@ module.exports = {
 					}
 
 					message.channel.send({embeds: [generateEmbed(1)], components: [initialBtnRow]}).then(list => {
-						const collector = list.createMessageComponentCollector({filter, time: 120000, componentType: "BUTTON"})
+						const collector = list.createMessageComponentCollector({filter, time: 120000, componentType: "SELECT_MENU"})
 					})
 				}
 
