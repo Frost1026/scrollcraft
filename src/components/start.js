@@ -119,7 +119,7 @@ module.exports = {
 					buttonRow.addComponents(new discordButton.Button(value[1]))
 				})
 
-				if(payloadBuffer > 1) {
+				if(payloadBuffer.length > 1) {
 					let currentPage = 1
 					let selected = false
 
@@ -129,8 +129,6 @@ module.exports = {
 						// return interaction.user.id === message.author.id
 						console.log(interaction.user.id)
 					}
-
-					console.log("test")
 
 					message.channel.send({embeds: [generateEmbed(1)], components: [initialBtnRow]}).then(list => {
 						const collector = list.createMessageComponentCollector({filter, time: 120000})
