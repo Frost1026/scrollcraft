@@ -136,6 +136,8 @@ module.exports = {
 						collector.on("collect", async(button) => {
 							const classIndex = currentPage - 1
 
+							console.log(button.id)
+
 							switch(button.id) {
 								case buttonTypes['⬅️'].customid:
 									await button.deferUpdate()
