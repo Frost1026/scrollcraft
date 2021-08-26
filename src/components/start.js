@@ -130,6 +130,8 @@ module.exports = {
 						console.log(interaction.user.id)
 					}
 
+					console.log("test")
+
 					message.channel.send({embeds: [generateEmbed(1)], components: [initialBtnRow]}).then(list => {
 						const collector = list.createMessageComponentCollector({filter, time: 120000})
 					})
