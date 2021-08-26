@@ -116,15 +116,15 @@ module.exports = {
 					}
 				})
 
-				Object.entries(buttonTypes).forEach(value => {
-					buttonRow.addComponents(new discordButton.Button(value[1]))
-				})
-
-				if(payloadBuffer.length > 1) {
+				if(payloadBuffer.length >= 1) {
 					let currentPage = 1
 					let selected = false
 
-					buttonRow.spliceComponents(0, 1)
+					buttonRow.addComponents(new discordButton.Button(buttonTypes["✅"]))
+
+					if(payloadBuffer.length > 1) {
+						buttonRow.spliceComponents(0, 0, new discordButton.Button(buttonTypes["➡️"]))
+					}
 
 					const filter = (interaction) => {
 						return interaction.user.id === message.author.id
@@ -140,19 +140,11 @@ module.exports = {
 								case buttonTypes['⬅️'].customid:
 									await button.deferUpdate()
 									currentPage -= 1
-
-									if(currentPage < pages && buttonRow.components.length < 3) {
-										buttonRow.spliceComponents(1, 0, new discordButton.Button(buttonTypes["➡️"]))
-									}
 									break
 								
 								case buttonTypes['➡️'].customid:
 									await button.deferUpdate()
 									currentPage += 1
-
-									if(currentPage > 1 && buttonRow.components.length < 3) {
-										buttonRow.spliceComponents(0, 0, new discordButton.Button(buttonTypes["⬅️"]))
-									}
 									break
 		
 								case buttonTypes['✅'].customid:
@@ -169,6 +161,14 @@ module.exports = {
 							}
 
 							console.log(buttonRow)
+
+							if(currentPage < pages && buttonRow.components.length < 3) {
+								buttonRow.spliceComponents(1, 0, new discordButton.Button(buttonTypes["➡️"]))
+							}
+
+							if(currentPage > 1 && buttonRow.components.length < 3) {
+								buttonRow.spliceComponents(0, 0, new discordButton.Button(buttonTypes["⬅️"]))
+							}
 
 							if(!selected) {
 								list.edit({embeds: [generateEmbed(currentPage)], components: [buttonRow]})
