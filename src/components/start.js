@@ -84,7 +84,7 @@ module.exports = {
 					payloadEmbed
 						.setAuthor(message.author.tag, message.author.displayAvatarURL({ format: "png", dynamic: true }))
 						.setTitle("Character Creation")
-						.setDescription("Classes only determine your starting weapon and stats.")
+						.setDescription("Profession only determine your starting weapon and stats.")
 						.setColor("#0074FF")
 						.setFooter(`Page ${page} of ${pages}`)
 		
@@ -151,7 +151,7 @@ module.exports = {
 									await button.deferUpdate()
 									selected = true
 									list.delete().then(() => {
-										message.channel.send(`${message.author} selected the **${payload[classIndex][0]}** class.`)
+										message.channel.send(`${message.author} selected the **${payload[classIndex][0]}** profession.`)
 										message.channel.send("**Creating Character...**").then((progress) => {
 											createCharacter(classIndex)
 											progress.edit("**Character Creation Complete**")
@@ -171,8 +171,6 @@ module.exports = {
 							}
 
 							buttonRow.addComponents(new discordButton.Button(buttonTypes["✅"]))
-
-							console.log(buttonRow)
 
 							if(!selected) {
 								list.edit({embeds: [generateEmbed(currentPage)], components: [buttonRow]})
