@@ -136,7 +136,7 @@ module.exports = {
 						collector.on("collect", async(button) => {
 							const classIndex = currentPage - 1
 
-							console.log(button.id)
+							console.log(button.customid)
 
 							switch(button.id) {
 								case buttonTypes['⬅️'].customid:
