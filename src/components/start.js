@@ -151,17 +151,17 @@ module.exports = {
 							currentBtnArray = []
 
 							switch(button.id) {
-								case buttonTypes['⬅️'].custom_id:
+								case buttonTypes['⬅️'].customid:
 									await button.deferReply()
 									currentPage -= 1
 									break
 								
-								case buttonTypes['➡️'].custom_id:
+								case buttonTypes['➡️'].customid:
 									await button.deferReply()
 									currentPage += 1
 									break
 		
-								case buttonTypes['✅'].custom_id:
+								case buttonTypes['✅'].customid:
 									await button.deferReply()
 									selected = true
 									list.delete().then(() => {
