@@ -126,8 +126,8 @@ module.exports = {
 					let initialBtnRow = buttonRow.spliceComponents(0, 1)
 
 					const filter = (interaction) => {
-						return interaction.user.id === message.author.id
 						console.log("oi")
+						return interaction.user.id === message.author.id
 					}
 
 					message.channel.send({embeds: [generateEmbed(1)], components: [initialBtnRow]}).then(list => {
