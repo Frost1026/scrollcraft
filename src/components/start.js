@@ -46,7 +46,6 @@ module.exports = {
 				const pageLimit = 1
 				const payloadBuffer = []
 
-				const readFirstEmbed = new discord.MessageEmbed()
 				const buttonRow = new discord.MessageActionRow()
 
 				//Add new Buttons here in order of appearance
@@ -105,8 +104,6 @@ module.exports = {
 				payload = Object.entries(classes).map(value => {
 					return value
 				})
-
-				console.log(payload)
 		
 				payload.forEach((value, index) => {
 					index += 1
@@ -122,12 +119,21 @@ module.exports = {
 					buttonRow.addComponents(new discordButton.Button(value[1]))
 				})
 
-				console.log(buttonRow)
+				const filter = (interaction) => {
+					// return interaction.user.id === message.author.id
+					console.log(interaction.user.id)
+				}
 
-				// const filter = (interaction) => {
-				// 	// return interaction.user.id === message.author.id
-				// 	console.log(interaction.user.id)
-				// }
+				if(payloadBuffer > 1) {
+					let currentPage = 1
+					let selected = false
+
+					let initialBtnRow = buttonRow.spliceComponents(0, 1)
+
+					message.channel.send({embeds: [generateEmbed(1)], components: [initialBtnRow]}).then(list => {
+						const collector = list.createMessageComponentCollector(filter, {time: 120000})
+					})
+				}
 
 				// if(payloadBuffer.length > 1) {
 				// 	let intinialBtnRow = new discord.MessageActionRow()
