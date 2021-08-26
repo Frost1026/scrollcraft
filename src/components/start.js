@@ -132,57 +132,53 @@ module.exports = {
 					message.channel.send({embeds: [generateEmbed(1)], components: [buttonRow]}).then(list => {
 						const collector = list.createMessageComponentCollector({filter, time: 120000, componentType: "BUTTON"})
 
-						buttonRow.spliceComponents(0, 0, new discordButton.Button(buttonTypes["⬅️"]))
+						collector.on("collect", async(button) => {
+							const classIndex = currentPage - 1
 
-						console.log(buttonRow)
-
-						// collector.on("collect", async(button) => {
-						// 	const classIndex = currentPage - 1
-
-						// 	switch(button.id) {
-						// 		case buttonTypes['⬅️'].customid:
-						// 			await button.deferUpdate()
-						// 			currentPage -= 1
-						// 			break
+							switch(button.id) {
+								case buttonTypes['⬅️'].customid:
+									await button.deferUpdate()
+									currentPage -= 1
+									break
 								
-						// 		case buttonTypes['➡️'].customid:
-						// 			await button.deferUpdate()
-						// 			currentPage += 1
-						// 			break
+								case buttonTypes['➡️'].customid:
+									await button.deferUpdate()
+									currentPage += 1
+									break
 		
-						// 		case buttonTypes['✅'].customid:
-						// 			await button.deferUpdate()
-						// 			selected = true
-						// 			list.delete().then(() => {
-						// 				message.channel.send(`${message.author} selected the **${payload[classIndex][0]}** class.`)
-						// 				message.channel.send("**Creating Character...**").then((progress) => {
-						// 					createCharacter(classIndex)
-						// 					progress.edit("**Character Creation Complete**")
-						// 				})
-						// 			})
-						// 			break
-						// 	}
+								case buttonTypes['✅'].customid:
+									await button.deferUpdate()
+									selected = true
+									list.delete().then(() => {
+										message.channel.send(`${message.author} selected the **${payload[classIndex][0]}** class.`)
+										message.channel.send("**Creating Character...**").then((progress) => {
+											createCharacter(classIndex)
+											progress.edit("**Character Creation Complete**")
+										})
+									})
+									break
+							}
 
-						// 	if(!selected) {
-						// 		if(currentPage > 1) {
-						// 			currentBtnArray.push(buttonStorage.buttons[0])
-						// 		}
+							if(!selected) {
+								if(currentPage > 1) {
+									buttonRow.spliceComponents(0, 0, new discordButton.Button(buttonTypes["⬅️"]))
+								}
 
-						// 		if(currentPage < pages) {
-						// 			currentBtnArray.push(buttonStorage.buttons[1])
-						// 		}
+								if(currentPage < pages) {
+									buttonRow.spliceComponents(1, 0, new discordButton.Button(buttonTypes["➡️"]))
+								}
 
-						// 		list.edit({embeds: [generateEmbed(currentPage)], components: [currentBtnRow]})
-						// 	}
-						// })
+								list.edit({embeds: [generateEmbed(currentPage)], components: [currentBtnRow]})
+							}
+						})
 
-						// collector.on("end", collected => {
-						// 	if(!selected) {
-						// 		list.delete().then(() => {
-						// 			message.channel.send("**Timed Out**")
-						// 		})
-						// 	}
-						// })
+						collector.on("end", collected => {
+							if(!selected) {
+								list.delete().then(() => {
+									message.channel.send("**Timed Out**")
+								})
+							}
+						})
 					})
 				}
 			} else {
