@@ -144,6 +144,8 @@ module.exports = {
 						const collector = list.createMessageComponentCollector(filter, {time: 120000})
 
 						collector.on("collect", async(button) => {
+							console.log(buttonStorage.buttons)
+
 							const classIndex = currentPage - 1
 
 							currentBtnArray = []
