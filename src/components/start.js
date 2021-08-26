@@ -47,7 +47,7 @@ module.exports = {
 				const pageLimit = 1
 				const payloadBuffer = []
 
-				const buttonRow = new discord.MessageActionRow()
+				let buttonRow = new discord.MessageActionRow()
 
 				//Add new Buttons here in order of appearance
 				const buttonTypes = {
