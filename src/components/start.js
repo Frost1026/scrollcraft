@@ -125,7 +125,8 @@ module.exports = {
 				})
 
 				const filter = (interaction) => {
-					return interaction.user.id === message.author.id
+					// return interaction.user.id === message.author.id
+					console.log(interaction.user.id)
 				}
 
 				if(payloadBuffer.length > 1) {
