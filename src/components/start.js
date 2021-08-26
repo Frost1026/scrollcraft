@@ -45,12 +45,9 @@ module.exports = {
 			
 				const pageLimit = 1
 				const payloadBuffer = []
-				const buttonStorage = {
-					id: [],
-					buttons: []
-				}
 
 				const readFirstEmbed = new discord.MessageEmbed()
+				const buttonRow = new discord.MessageActionRow()
 
 				//Add new Buttons here in order of appearance
 				const buttonTypes = {
@@ -108,6 +105,8 @@ module.exports = {
 				payload = Object.entries(classes).map(value => {
 					return value
 				})
+
+				console.log(payload)
 		
 				payload.forEach((value, index) => {
 					index += 1
@@ -120,89 +119,90 @@ module.exports = {
 				})
 
 				Object.entries(buttonTypes).forEach(value => {
-					buttonStorage.id.push(value[0])
-					buttonStorage.buttons.push(new discordButton.Button(value[1]))
+					buttonRow.addComponents(new discordButton.Button(value[1]))
 				})
 
-				const filter = (interaction) => {
-					// return interaction.user.id === message.author.id
-					console.log(interaction.user.id)
-				}
+				console.log(buttonRow)
 
-				if(payloadBuffer.length > 1) {
-					let intinialBtnRow = new discord.MessageActionRow()
-					let currentBtnRow = new discord.MessageActionRow()
+				// const filter = (interaction) => {
+				// 	// return interaction.user.id === message.author.id
+				// 	console.log(interaction.user.id)
+				// }
+
+				// if(payloadBuffer.length > 1) {
+				// 	let intinialBtnRow = new discord.MessageActionRow()
+				// 	let currentBtnRow = new discord.MessageActionRow()
 					
-					buttonStorage.buttons.slice(1).forEach(value => {
-						intinialBtnRow.addComponents(value)
-					})
+				// 	buttonStorage.buttons.slice(1).forEach(value => {
+				// 		intinialBtnRow.addComponents(value)
+				// 	})
 
-					message.channel.send({embeds: [generateEmbed(1)], components: [intinialBtnRow]}).then(list => {
-						let currentPage = 1
-						let selected = false
-						let currentBtnArray = []
+				// 	message.channel.send({embeds: [generateEmbed(1)], components: [intinialBtnRow]}).then(list => {
+				// 		let currentPage = 1
+				// 		let selected = false
+				// 		let currentBtnArray = []
 
-						const collector = list.createMessageComponentCollector(filter, {time: 120000})
+				// 		const collector = list.createMessageComponentCollector(filter, {time: 120000})
 
-						collector.on("collect", async(button) => {
-							console.log(buttonStorage.buttons)
+				// 		collector.on("collect", async(button) => {
+				// 			console.log(buttonStorage.buttons)
 
-							const classIndex = currentPage - 1
+				// 			const classIndex = currentPage - 1
 
-							currentBtnArray = []
+				// 			currentBtnArray = []
 
-							switch(button.id) {
-								case buttonTypes['⬅️'].customid:
-									await button.deferReply()
-									currentPage -= 1
-									break
+				// 			switch(button.id) {
+				// 				case buttonTypes['⬅️'].customid:
+				// 					await button.deferReply()
+				// 					currentPage -= 1
+				// 					break
 								
-								case buttonTypes['➡️'].customid:
-									await button.deferReply()
-									currentPage += 1
-									break
+				// 				case buttonTypes['➡️'].customid:
+				// 					await button.deferReply()
+				// 					currentPage += 1
+				// 					break
 		
-								case buttonTypes['✅'].customid:
-									await button.deferReply()
-									selected = true
-									list.delete().then(() => {
-										message.channel.send(`${message.author} selected the **${payload[classIndex][0]}** class.`)
-										message.channel.send("**Creating Character...**").then((progress) => {
-											createCharacter(classIndex)
-											progress.edit("**Character Creation Complete**")
-										})
-									})
-									break
-							}
+				// 				case buttonTypes['✅'].customid:
+				// 					await button.deferReply()
+				// 					selected = true
+				// 					list.delete().then(() => {
+				// 						message.channel.send(`${message.author} selected the **${payload[classIndex][0]}** class.`)
+				// 						message.channel.send("**Creating Character...**").then((progress) => {
+				// 							createCharacter(classIndex)
+				// 							progress.edit("**Character Creation Complete**")
+				// 						})
+				// 					})
+				// 					break
+				// 			}
 
-							if(!selected) {
-								if(currentPage > 1) {
-									currentBtnArray.push(buttonStorage.buttons[0])
-								}
+				// 			if(!selected) {
+				// 				if(currentPage > 1) {
+				// 					currentBtnArray.push(buttonStorage.buttons[0])
+				// 				}
 
-								if(currentPage < pages) {
-									currentBtnArray.push(buttonStorage.buttons[1])
-								}
+				// 				if(currentPage < pages) {
+				// 					currentBtnArray.push(buttonStorage.buttons[1])
+				// 				}
 
-								currentBtnArray.push(buttonStorage.buttons[2])
+				// 				currentBtnArray.push(buttonStorage.buttons[2])
 
-								currentBtnArray.forEach(value => {
-									currentBtnRow.addComponents(value)
-								})
+				// 				currentBtnArray.forEach(value => {
+				// 					currentBtnRow.addComponents(value)
+				// 				})
 
-								list.edit({embeds: [generateEmbed(currentPage)], components: [currentBtnRow]})
-							}
-						})
+				// 				list.edit({embeds: [generateEmbed(currentPage)], components: [currentBtnRow]})
+				// 			}
+				// 		})
 
-						collector.on("end", collected => {
-							if(!selected) {
-								list.delete().then(() => {
-									message.channel.send("**Timed Out**")
-								})
-							}
-						})
-					})
-				}
+				// 		collector.on("end", collected => {
+				// 			if(!selected) {
+				// 				list.delete().then(() => {
+				// 					message.channel.send("**Timed Out**")
+				// 				})
+				// 			}
+				// 		})
+				// 	})
+				// }
 			} else {
 				message.channel.send(`**${message.author} already have a profile on the database**`)
 			}
