@@ -140,11 +140,19 @@ module.exports = {
 								case buttonTypes['⬅️'].customid:
 									await button.deferUpdate()
 									currentPage -= 1
+
+									if(currentPage < pages && buttonRow.components.length < 3) {
+										buttonRow.spliceComponents(1, 0, new discordButton.Button(buttonTypes["➡️"]))
+									}
 									break
 								
 								case buttonTypes['➡️'].customid:
 									await button.deferUpdate()
 									currentPage += 1
+
+									if(currentPage > 1 && buttonRow.components.length < 3) {
+										buttonRow.spliceComponents(0, 0, new discordButton.Button(buttonTypes["⬅️"]))
+									}
 									break
 		
 								case buttonTypes['✅'].customid:
@@ -162,12 +170,8 @@ module.exports = {
 
 							console.log(buttonRow)
 
-							if(currentPage > 1 && buttonRow.components.length < 3) {
-								buttonRow.spliceComponents(0, 0, new discordButton.Button(buttonTypes["⬅️"]))
-							}
-
-							if(currentPage < pages && buttonRow.components.length < 3) {
-								buttonRow.spliceComponents(1, 0, new discordButton.Button(buttonTypes["➡️"]))
+							if(currentPage === pages && buttonRow.components.length === 3) {
+								buttonRow.spliceComponents(1, 1)
 							}
 
 							if(!selected) {
