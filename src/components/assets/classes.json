@@ -1,50 +1,94 @@
 {
     "Warlock": {
         "icon": "🪄",
-        "desc": "Born of great intelligence, they use staffs able to imbeud with powers, although powerful an extreme lack of defense is not to be overlooked. Their source of knowledge over the mystic arts comes from the scrolls",
+        "desc": "Warlocks are trained in the art of the scrolls and magic, therefore they wield a staff and draw their powers from scrolls and knowledge.",
         "stats": {
-            "strength": 0,
-            "defence": 0,
-            "dexterity": 0,
-            "intelligence": 0,
-            "agility": 0,
-            "hp": 1200
+            "strength": 1,
+            "defence": 1,
+            "dexterity": 1,
+            "intelligence": 1,
+            "agility": 1,
+            "hp": 1000
+        },
+        "inventory": {
+            "body": {
+                
+            },
+            "hand": {
+
+            },
+            "backpack": {
+
+            }
         }
     },
-    "Knight": {
+    "Swordsman": {
         "icon": "⚔️",
-        "desc": "Tasked with a holy job to protect the realm of Cloudia, the knight specialises in either 2-handed or 1-handed sword combat. Knights often will dive head first into battle, they quickly gained the skills to draw enemies from allies, with this and thier great defense a knight can also be a great tank.",
+        "desc": "Swordsmen are trained in the way of the sword to be lathal even though they only have a sword at hand.",
         "stats": {
-            "strength": 0,
-            "defence": 0,
-            "dexterity": 0,
-            "intelligence": 0,
-            "agility": 0,
-            "hp": 1400
+            "strength": 1,
+            "defence": 1,
+            "dexterity": 1,
+            "intelligence": 1,
+            "agility": 1,
+            "hp": 1800
+        },
+        "inventory": {
+            "body": {
+
+            },
+            "hand": {
+
+            },
+            "backpack": {
+                
+            }
         }
     },
-    "Hunter": {
+    "Ranger": {
         "icon": "🏹",
-        "desc": "Borned with great dexterity, hunters uses their sharp instincts and hands to master the bow, their eagle like vision enables them to spot enemies miles away. Their trustworthy winged companion may also help them to scout out an area. Since they hunt for a living, stealth is also a key part of being a hunter.",
+        "desc": "Said to have incredible accuracy and dexterity, a trained ranger can take down enemy triple their size from a distance.",
         "stats": {
-            "strength": 0,
-            "defence": 0,
-            "dexterity": 0,
-            "intelligence": 0,
-            "agility": 0,
+            "strength": 1,
+            "defence": 1,
+            "dexterity": 1,
+            "intelligence": 1,
+            "agility": 1,
             "hp": 1200
+        },
+        "inventory": {
+            "body": {
+
+            },
+            "hand": {
+
+            },
+            "backpack": {
+                
+            }
         }
     },
     "Shaman": {
         "icon": "🗿",
-        "desc": "Although similar to a warlock, shamans draw their godly powers from totems that they can summon temporarily at will. To make up for the lack of defense & health, summoned totems will give off a regeneration effect or maybe some other buffs?",
+        "desc": "Shamans are incredibly powerful with their training of drawing power from the totems they summon by their relics.",
         "stats": {
-            "strength": 0,
-            "defence": 0,
-            "dexterity": 0,
-            "intelligence": 0,
-            "agility": 0,
+            "strength": 1,
+            "defence": 1,
+            "dexterity": 1,
+            "intelligence": 1,
+            "agility": 1,
             "hp": 1100
+        },
+        "inventory": {
+            "body": {
+
+            },
+            "hand": {
+
+            },
+            "backpack": {
+                
+            }
         }
     }
 }

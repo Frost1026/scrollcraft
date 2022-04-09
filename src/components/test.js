@@ -11,11 +11,8 @@ module.exports = {
     func: async (message, args, client, commands, config) => {
         if(config.table[0].WHITELIST.includes(message.author.username)){
             model.profile.find({uid: `acc_${message.author.id}`}, (err, docs) => {
-                if(docs) {
-                    
-                } else {
-                    message.channel.send(`**No account found for <@${player.username}>**`)
-                }
+                //Base atk * (1 + intel%) * (1 + strength%) * ceil(agility / 20)
+                //Crits: DMGout + DMGout * CritDMG%
             })
         }
     }
